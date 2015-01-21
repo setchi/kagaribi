@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	public GameObject mainCamera;
-	
 	float controllSpeed = 1;
 	Vector3 baseDir;
 
@@ -30,7 +28,7 @@ public class PlayerController : MonoBehaviour {
 		float x = Mathf.Clamp(pos.x, -1f, 1f);
 		float y = Mathf.Clamp(pos.y, -1f, 1f);
 
-		mainCamera.transform.Translate(
+		Camera.main.transform.Translate(
 			x * controllSpeed,
 			y * controllSpeed,
 			0

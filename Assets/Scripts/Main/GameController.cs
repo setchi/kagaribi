@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour {
 	public EffectManager effectManager;
 	public ScoreManager scoreManager;
 	public FadeManager fadeManager;
+	public GameObject player;
 
 	static int initialSpeed = 30;
 	int speed_ = initialSpeed;

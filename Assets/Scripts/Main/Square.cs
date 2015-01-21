@@ -26,7 +26,7 @@ public class Square : MonoBehaviour {
 	}
 
 	void Judge(Vector3 pos) {
-		pos -= Camera.main.transform.localPosition;
+		pos -= gameController.player.transform.position;
 
 		if (Mathf.Abs(pos.x) < size && Mathf.Abs(pos.y) < size) {
 			gameController.Correct();
