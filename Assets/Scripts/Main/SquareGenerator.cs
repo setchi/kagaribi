@@ -39,16 +39,15 @@ public class SquareGenerator : MonoBehaviour {
 
 		do {
 			color2 = UnityEngine.Random.Range(0, 8);
-		} while (color2 == color1 || color2 == (~color1 & 7));
+		} while (color1 == color2 || (color1 ^ color2) == 7);
 
 		return new Tuple<Color, Color>(
-			new Color(color1 & 1, (color1 >>= 1) & 1, (color1 >>= 1) & 1),
-			new Color(color2 & 1, (color2 >>= 1) & 1, (color2 >>= 1) & 1)
+			new Color(color1 >> 2 & 1, color1 >> 1 & 1, color1 & 1),
+			new Color(color2 >> 2 & 1, color2 >> 1 & 1, color2 & 1)
 		);
 	}
 
 	IEnumerator PatternChanger() {
-		var alpha = 0.05f;
 		var PatternRoutineList = new List<Func<Tuple<Color, Color>, List<IEnumerator>>>() {
 
 			// Multiple Cross Circle
@@ -95,7 +94,7 @@ public class SquareGenerator : MonoBehaviour {
 			var routineWorks = PatternRoutineList[index](colorPair);
 			foreach (var routine in routineWorks) StartCoroutine(routine);
 
-			yield return new WaitForSeconds(5f);
+			yield return new WaitForSeconds(20f);
 
 			foreach (var routine in routineWorks) StopCoroutine(routine);
 			index = ++index % PatternRoutineList.Count;
