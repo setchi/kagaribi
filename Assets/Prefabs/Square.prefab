@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   white: 0
-  effectManager: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!212 &21206972
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -59,7 +59,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bcc27f6fb5a827a43bc334fc542b32f7, type: 3}
-  m_Color: {r: 0, g: 1, b: 0, a: .90196079}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
 --- !u!224 &22438456
 RectTransform:
   m_ObjectHideFlags: 1
