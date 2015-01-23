@@ -3,9 +3,10 @@ using System.Linq;
 using System.Collections;
 
 public class BackgroundPattern {
+	static float changeDelay = 0.5f;
 
 	public static IEnumerator Circular(float r, float time, int resolution, int dir, int multiple, Tuple<Color, Color> colorPair) {
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(changeDelay);
 		var i = 0;
 		
 		for (;;) {
@@ -24,7 +25,9 @@ public class BackgroundPattern {
 	}
 	
 	public static IEnumerator RandomPositionAndScale(float min, float max, Tuple<Color, Color> colorPair) {
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(changeDelay);
+		bool collerToggle = false;
+
 		for (;;) {
 			Vector3 pos;
 			do {
@@ -32,7 +35,7 @@ public class BackgroundPattern {
 			} while (Mathf.Abs(pos.x) < 4 && Mathf.Abs(pos.y) < 4);
 			
 			pos.z = SquareGenerator.popDepth;
-			var square = SquareGenerator.PopBackground(pos, Quaternion.identity, Random.Range(0, 2) == 0 ? colorPair.Item1 : colorPair.Item1);
+			var square = SquareGenerator.PopBackground(pos, Quaternion.identity, (collerToggle = !collerToggle) ? colorPair.Item1 : colorPair.Item2);
 			var scale = SquareGenerator.GenerateRandomVectorFromRange(0.5f, 2);
 			square.transform.localScale = scale;
 			
@@ -41,7 +44,7 @@ public class BackgroundPattern {
 	}
 
 	public static IEnumerator Triangle(float r, float time, int resolution, int multiple, Tuple<Color, Color> colorPair) {
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(changeDelay);
 		var i = 0;
 
 		time /= multiple;

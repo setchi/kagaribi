@@ -33,20 +33,22 @@ public class SquareGenerator : MonoBehaviour {
 		playerController.SetParticleColor(Color.white, color);
 	}
 
+	Tuple<Color, Color> GenerateColorPair() {
+		int color1 = UnityEngine.Random.Range(0, 7);
+		int color2;
+
+		do {
+			color2 = UnityEngine.Random.Range(0, 8);
+		} while (color2 == color1 || color2 == (~color1 & 7));
+
+		return new Tuple<Color, Color>(
+			new Color(color1 & 1, (color1 >>= 1) & 1, (color1 >>= 1) & 1),
+			new Color(color2 & 1, (color2 >>= 1) & 1, (color2 >>= 1) & 1)
+		);
+	}
+
 	IEnumerator PatternChanger() {
 		var alpha = 0.05f;
-		var colorPairList = new List<Tuple<Color, Color>> {
-			new Tuple<Color, Color>(Color.cyan, Color.magenta),
-			new Tuple<Color, Color>(Color.magenta, Color.yellow),
-			new Tuple<Color, Color>(Color.cyan, Color.yellow),
-			new Tuple<Color, Color>(Color.green, new Color(0, 1, 0, alpha)),
-			new Tuple<Color, Color>(Color.red, new Color(1, 0, 0, alpha)),
-			new Tuple<Color, Color>(Color.green, Color.cyan),
-			new Tuple<Color, Color>(Color.magenta, Color.red),
-			new Tuple<Color, Color>(Color.cyan, Color.blue),
-			new Tuple<Color, Color>(Color.magenta, Color.blue)
-		};
-
 		var PatternRoutineList = new List<Func<Tuple<Color, Color>, List<IEnumerator>>>() {
 
 			// Multiple Cross Circle
@@ -82,27 +84,21 @@ public class SquareGenerator : MonoBehaviour {
 			// Cross Cube
 			}, colorPair => new List<IEnumerator>() { /**/
 				BackgroundPattern.Triangle(20, 10, 70, 4, colorPair),
-				TargetPattern.RandomPosition(6, 3f, 4),
+				TargetPattern.RandomPosition(5, 3f, 4),
 				ChangeParticleColor(colorPair.Item1)
 			}
 		};
 
 		var index = 0;
-		var colorIndex = 0;
 		for (;;) {
-			var color = 0;
-			do {
-				color = UnityEngine.Random.Range(0, colorPairList.Count);
-			} while (color == colorIndex);
-
-			var routineWorks = PatternRoutineList[index](colorPairList[color]);
+			var colorPair = GenerateColorPair();
+			var routineWorks = PatternRoutineList[index](colorPair);
 			foreach (var routine in routineWorks) StartCoroutine(routine);
 
-			yield return new WaitForSeconds(15f);
+			yield return new WaitForSeconds(5f);
 
 			foreach (var routine in routineWorks) StopCoroutine(routine);
 			index = ++index % PatternRoutineList.Count;
-			colorIndex = color;
 		}
 	}
 
