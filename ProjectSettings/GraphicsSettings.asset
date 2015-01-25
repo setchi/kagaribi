@@ -20,7 +20,7 @@ GraphicsSettings:
   m_LightmapKeepDirCombined: 1
   m_LightmapKeepDirSeparate: 1
   m_LightmapKeepDynamic: 1
-  m_FogStripping: 1
-  m_FogKeepLinear: 0
+  m_FogStripping: 0
+  m_FogKeepLinear: 1
   m_FogKeepExp: 0
   m_FogKeepExp2: 0

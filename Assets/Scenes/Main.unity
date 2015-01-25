@@ -582,8 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffc19f54d64be747aee036bbd513239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greenSquare: {fileID: 181988, guid: 3d3785a00e5021b44a4b1d078c4433d8, type: 2}
-  whiteSquare: {fileID: 117208, guid: 6b65a7621e3b2ab4d9dfc5abceff8099, type: 2}
+  squarePrefab: {fileID: 181988, guid: 3d3785a00e5021b44a4b1d078c4433d8, type: 2}
   gameController: {fileID: 1418434429}
   playerController: {fileID: 849838247}
 --- !u!4 &1220307472
@@ -752,6 +751,18 @@ Prefab:
     - target: {fileID: 19869860, guid: 27e0b4d8c8e40fd47b6d479329e55ddb, type: 2}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
       value: .914691925
+      objectReference: {fileID: 0}
+    - target: {fileID: 19966268, guid: 27e0b4d8c8e40fd47b6d479329e55ddb, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 842cc6741ae2eb84dabc0adfc791f136, type: 2}
+    - target: {fileID: 19966268, guid: 27e0b4d8c8e40fd47b6d479329e55ddb, type: 2}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19966268, guid: 27e0b4d8c8e40fd47b6d479329e55ddb, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27e0b4d8c8e40fd47b6d479329e55ddb, type: 2}

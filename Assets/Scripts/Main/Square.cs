@@ -2,15 +2,16 @@
 using System.Collections;
 
 public class Square : MonoBehaviour {
-	public bool isTarget;
-
-	[HideInInspector]
-	public GameController gameController;
-
 	SpriteRenderer spriteRenderer;
 	bool isCorrectJudged = false;
 	bool stopping = true;
 	float size = 1.5f;
+
+	[HideInInspector]
+	public bool isTarget;
+
+	[HideInInspector]
+	public GameController gameController;
 
 	void Awake() {
 		spriteRenderer = GetComponent<SpriteRenderer>();

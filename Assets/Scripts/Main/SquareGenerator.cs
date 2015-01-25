@@ -5,20 +5,17 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class SquareGenerator : MonoBehaviour {
-	public GameObject greenSquare;
-	public GameObject whiteSquare;
+	public GameObject squarePrefab;
 	public GameController gameController;
 	public PlayerController playerController;
 
 	static int maxSquare = 3000;
 	static int currentIndex = 0;
 	static Square[] squares = new Square[maxSquare];
-	[HideInInspector]
-	public static float popDepth = 200;
 
 	void Awake() {
 		for (var i = 0; i < maxSquare; i++) {
-			var square = (GameObject)Instantiate(greenSquare, Vector3.zero, Quaternion.identity);
+			var square = (GameObject)Instantiate(squarePrefab, Vector3.zero, Quaternion.identity);
 			squares[i] = square.GetComponent<Square>();
 			squares[i].gameController = gameController;
 		}
@@ -56,34 +53,34 @@ public class SquareGenerator : MonoBehaviour {
 				var multiple = UnityEngine.Random.Range(1, 6);
 				var dir = UnityEngine.Random.Range(0, 2);
 				
-				routines.Add(BackgroundPattern.Circular(10, 10, 80, dir == 0 ? 1 : -1, multiple, colorPair));
-				routines.Add(BackgroundPattern.Circular(10, 10, 80, dir == 1 ? 1 : -1, multiple, colorPair));
-				routines.Add(TargetPattern.Circular(3f, 7.5f, 5, UnityEngine.Random.Range(0, 2) == 0 ? 1 : -1));
+				routines.Add(Pattern.Background.Circular(10, 10, 80, dir == 0 ? 1 : -1, multiple, colorPair));
+				routines.Add(Pattern.Background.Circular(10, 10, 80, dir == 1 ? 1 : -1, multiple, colorPair));
+				routines.Add(Pattern.Target.Circular(3f, 7.5f, 5, UnityEngine.Random.Range(0, 2) == 0 ? 1 : -1));
 				routines.Add(ChangeParticleColor(colorPair.Item1));
 				return routines;
 			
 			// Multiple Circle
 			}, colorPair => new List<IEnumerator>() { 
-				BackgroundPattern.Circular(10, 10, 80, UnityEngine.Random.Range(0, 2) == 0 ? 1 : -1, UnityEngine.Random.Range(2, 6), colorPair),
-				TargetPattern.Circular(3f, 7.5f, 5, UnityEngine.Random.Range(0, 2) == 0 ? 1 : -1),
+				Pattern.Background.Circular(10, 10, 80, UnityEngine.Random.Range(0, 2) == 0 ? 1 : -1, UnityEngine.Random.Range(2, 6), colorPair),
+				Pattern.Target.Circular(3f, 7.5f, 5, UnityEngine.Random.Range(0, 2) == 0 ? 1 : -1),
 				ChangeParticleColor(colorPair.Item1),
 
 			// Random Position
 			}, colorPair => new List<IEnumerator>() {
-				BackgroundPattern.RandomPositionAndScale(-30, 30, colorPair),
-				TargetPattern.RandomPosition(3, 1.5f, 0),
+				Pattern.Background.RandomPositionAndScale(-30, 30, colorPair),
+				Pattern.Target.RandomPosition(3, 1.5f, 0),
 				ChangeParticleColor(colorPair.Item1)
 			
 			// Multiple Cross Polygon
 			}, colorPair => new List<IEnumerator>() { /**
-				BackgroundPattern.Triangle(10, 10, 70, 3, colorPair),
-				TargetPattern.RandomPosition(3, 1.5f, 0),
+				Pattern.Background.Triangle(15, 10, 70, 3, colorPair),
+				Pattern.Target.RandomPosition(3, 1.5f, 0),
 				ChangeParticleColor(colorPair.Item1)
 			
-			// Cross Cube
+			// Cross Square
 			}, colorPair => new List<IEnumerator>() { /**/
-				BackgroundPattern.Triangle(20, 10, 70, 4, colorPair),
-				TargetPattern.RandomPosition(5, 3f, 4),
+				Pattern.Background.Polygon(15, 10, 70, 4, colorPair),
+				Pattern.Target.RandomPosition(5, 3f, 4),
 				ChangeParticleColor(colorPair.Item1)
 			}
 		};
@@ -94,7 +91,7 @@ public class SquareGenerator : MonoBehaviour {
 			var routineWorks = PatternRoutineList[index](colorPair);
 			foreach (var routine in routineWorks) StartCoroutine(routine);
 
-			yield return new WaitForSeconds(20f);
+			yield return new WaitForSeconds(15f);
 
 			foreach (var routine in routineWorks) StopCoroutine(routine);
 			index = ++index % PatternRoutineList.Count;
@@ -114,9 +111,5 @@ public class SquareGenerator : MonoBehaviour {
 		var square = squares[currentIndex].gameObject;
 		currentIndex = ++currentIndex % maxSquare;
 		return square;
-	}
-
-	public static Vector3 GenerateRandomVectorFromRange(float min, float max) {
-		return new Vector3(UnityEngine.Random.Range(min, max), UnityEngine.Random.Range(min, max), UnityEngine.Random.Range(min, max));
 	}
 }
