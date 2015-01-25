@@ -12,6 +12,7 @@ GameObject:
   - 198: {fileID: 19869860}
   - 199: {fileID: 19966268}
   - 114: {fileID: 11475614}
+  - 114: {fileID: 11422692}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -25,12 +26,28 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157226}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalRotation: {x: .999961913, y: -1.64336214e-07, z: -1.64336214e-07, w: -.0087265363}
+  m_LocalPosition: {x: 0, y: -.5, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11422692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e376b3d86b283ed4380a1796e4d0560d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fastestInterval: 0
+  latestInterval: .200000003
+  maxAlpha: 1
+  minAlpha: .550000012
+  spriteRenderer: {fileID: 21295540}
 --- !u!114 &11475614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -42,7 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb942c206e1ce3458e118b423516d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
 --- !u!198 &19869860
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -60,7 +76,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: .5
+      scalar: .449999988
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -217,10 +233,10 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4294967295
+        rgba: 16777215
       minMaxState: 0
     startSize:
-      scalar: .5
+      scalar: .800000012
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -348,22 +364,22 @@ ParticleSystem:
     time3: 0
     m_BurstCount: 0
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          value: .382227451
+          inSlope: .532464504
+          outSlope: .532464504
+          tangentMode: 10
         - time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          value: .914691925
+          inSlope: .532464504
+          outSlope: .532464504
+          tangentMode: 10
         m_PreInfinity: 2
         m_PostInfinity: 2
       minCurve:
@@ -385,20 +401,20 @@ ParticleSystem:
   RotationModule:
     enabled: 0
     curve:
-      scalar: .785398185
+      scalar: 3.1415925
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          value: -1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 10
         - time: 1
           value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 10
         m_PreInfinity: 2
         m_PostInfinity: 2
       minCurve:
@@ -416,7 +432,7 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-      minMaxState: 0
+      minMaxState: 1
   ColorModule:
     enabled: 1
     gradient:
@@ -426,7 +442,7 @@ ParticleSystem:
           rgba: 4294967295
         key1:
           serializedVersion: 2
-          rgba: 65280
+          rgba: 16777215
         key2:
           serializedVersion: 2
           rgba: 0
@@ -938,7 +954,7 @@ ParticleSystem:
   RotationBySpeedModule:
     enabled: 0
     curve:
-      scalar: .785398185
+      scalar: .785398126
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1103,8 +1119,8 @@ ParticleSystemRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157226}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_LightmapIndex: 255
   m_LightmapIndexDynamic: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
