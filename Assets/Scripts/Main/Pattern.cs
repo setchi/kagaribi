@@ -18,8 +18,8 @@ public class Pattern : MonoBehaviour {
 		return Quaternion.AngleAxis(degree, Vector3.forward) * Vector3.up;
 	}
 
-	static void Foreach(int start, int count, Action<int> action) {
-		for (int i = start; i < count; ++i)
+	static void Repeat(int max, Action<int> action) {
+		for (int i = 0; i < max; ++i)
 			action(i);
 	}
 
@@ -33,7 +33,7 @@ public class Pattern : MonoBehaviour {
 			var maxChain = 2;
 
 			while (true) {
-				Foreach (0, maxChain, chain => {
+				Repeat (maxChain, chain => {
 					var degree = 360f * ((float)counter / resolution);
 					var direction = DirectionFromDegree(degree + chain * 2 * rotateDir);
 					var basePos = direction * r;
@@ -59,7 +59,7 @@ public class Pattern : MonoBehaviour {
 					basePos = RandomVectorFromRange(-range, range);
 				} while (Mathf.Abs(basePos.x) < ignoreRange || Mathf.Abs(basePos.y) < ignoreRange);
 				
-				Foreach (0, maxChain, chain => {
+				Repeat (maxChain, chain => {
 					var pos = basePos + RandomVectorFromRange(-3, 3) / 100;
 					pos.z = popDepth + chain * 2f;
 
@@ -83,7 +83,7 @@ public class Pattern : MonoBehaviour {
 				var percentage = (float)counter / resolution;
 				var degree = 360f * percentage * rotateDir;
 				
-				Foreach (0, multiple, i => {
+				Repeat (multiple, i => {
 					var color = Color.Lerp(
 						colorPair.Item1,
 						colorPair.Item2,
@@ -122,38 +122,40 @@ public class Pattern : MonoBehaviour {
 			}
 		}
 		
-		public static IEnumerator Polygon(float r, float time, int resolution, int multiple, Tuple<Color, Color> colorPair) {
+		public static IEnumerator Polygon(float r, float interval, int length, int multiplicity, Tuple<Color, Color> colorPair) {
 			yield return new WaitForSeconds(switchDelay);
+			GameObject tailEnd = null;
 			var counter = 0;
 			
-			time /= multiple;
-			var timeScale = Time.timeScale;
-			
 			while (true) {
-				var percentage = (float)counter / resolution;
-				
-				Foreach (0, multiple, i => {
-					var color = Color.Lerp(
-						colorPair.Item1,
-						colorPair.Item2,
-						Mathf.PingPong(percentage * multiple, 1)
-					);
+				var tailEndZ = tailEnd == null ? popDepth - interval * 2 : tailEnd.transform.position.z;
 
-					var pos = Vector3.Lerp(
-						DirectionFromDegree(i * (360f / multiple)) * r,
-						DirectionFromDegree((i + 2) * (360f / multiple)) * r,
-						percentage
-					);
+				while ((tailEndZ += interval) < popDepth) {
+					var percentage = (float)counter / length;
 
-					pos.z = popDepth + 30 * Time.deltaTime * (1 - (timeScale / Time.timeScale));
+					Repeat (multiplicity, i => {
+						var color = Color.Lerp(
+							colorPair.Item1,
+							colorPair.Item2,
+							Mathf.PingPong(percentage * multiplicity, 1)
+						);
 
-					var square = SquareGenerator.PopBackground(pos, Quaternion.identity, color);
-					square.transform.localScale = Vector3.one * 0.5f;
-				});
+						var pos = Vector3.Lerp(
+							DirectionFromDegree(i * (360f / multiplicity)),
+							DirectionFromDegree((i + 2) * (360f / multiplicity)),
+							percentage
+						) * r;
 
-				counter = ++counter % resolution;
-				timeScale = Time.timeScale;
-				yield return new WaitForSeconds((time * (1 / Time.timeScale)) / resolution);
+						pos.z = tailEndZ;
+
+						tailEnd = SquareGenerator.PopBackground(pos, Quaternion.identity, color);
+						tailEnd.transform.localScale = Vector3.one * 0.5f;
+					});
+
+					counter = ++counter % length;
+				}
+
+				yield return new WaitForEndOfFrame();
 			}
 		}
 	}
