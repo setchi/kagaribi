@@ -74,31 +74,35 @@ public class Pattern : MonoBehaviour {
 
 	public class Background {
 		static float switchDelay = 0.5f;
+		static GameObject tailEnd = null;
 		
-		public static IEnumerator Circular(float r, float time, int resolution, int rotateDir, int multiple, Tuple<Color, Color> colorPair) {
+		public static IEnumerator Circular(float r, float interval, int resolution, int rotateDir, int multiplicity, Tuple<Color, Color> colorPair) {
 			yield return new WaitForSeconds(switchDelay);
 			var counter = 0;
 			
 			while (true) {
-				var percentage = (float)counter / resolution;
-				var degree = 360f * percentage * rotateDir;
-				
-				Repeat (multiple, i => {
-					var color = Color.Lerp(
-						colorPair.Item1,
-						colorPair.Item2,
-						Mathf.PingPong(percentage * 5, 1)
-					);
+				var tailEndZ = tailEnd == null ? popDepth - interval * 2 : tailEnd.transform.position.z;
+				while ((tailEndZ += interval) < popDepth) {
+					var percentage = (float)counter / resolution;
+					var degree = 360f * percentage * rotateDir;
+					
+					Repeat (multiplicity, i => {
+						var color = Color.Lerp(
+							colorPair.Item1,
+							colorPair.Item2,
+							Mathf.PingPong(percentage * 5, 1)
+						);
 
-					var direction = DirectionFromDegree(degree + (i * (360f / multiple)));
-					var pos = direction * r;
-					pos.z = popDepth;
-					SquareGenerator.PopBackground(pos, Quaternion.identity, color);
-				});
+						var direction = DirectionFromDegree(degree + (i * (360f / multiplicity)));
+						var pos = direction * r;
+						pos.z = tailEndZ;
+						tailEnd = SquareGenerator.PopBackground(pos, Quaternion.identity, color);
+					});
 
-				counter = ++counter % resolution;
+					counter = ++counter % resolution;
+				}
 				
-				yield return new WaitForSeconds((time * (1 / Time.timeScale)) / resolution);
+				yield return new WaitForEndOfFrame();
 			}
 		}
 		
@@ -124,12 +128,10 @@ public class Pattern : MonoBehaviour {
 		
 		public static IEnumerator Polygon(float r, float interval, int length, int multiplicity, Tuple<Color, Color> colorPair) {
 			yield return new WaitForSeconds(switchDelay);
-			GameObject tailEnd = null;
 			var counter = 0;
 			
 			while (true) {
 				var tailEndZ = tailEnd == null ? popDepth - interval * 2 : tailEnd.transform.position.z;
-
 				while ((tailEndZ += interval) < popDepth) {
 					var percentage = (float)counter / length;
 

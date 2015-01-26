@@ -54,18 +54,18 @@ public class SquareGenerator : MonoBehaviour {
 			// Multiple Cross Circle
 			colorPair => {
 				var routines = new List<IEnumerator>();
-				var multiple = UnityEngine.Random.Range(1, 6);
-				var dir = PickAtRandom<int>(1, -1);
+				var multiplicity = UnityEngine.Random.Range(2, 5);
+				var rotateDir = PickAtRandom<int>(1, -1);
 				
-				routines.Add(Pattern.Background.Circular(10, 10, 80, dir, multiple, colorPair));
-				routines.Add(Pattern.Background.Circular(10, 10, 80, dir * -1, multiple, colorPair));
+				routines.Add(Pattern.Background.Circular(10, 4.5f, 80, rotateDir, multiplicity, colorPair));
+				routines.Add(Pattern.Background.Circular(10, 4.5f, 80, rotateDir * -1, multiplicity, colorPair));
 				routines.Add(Pattern.Target.Circular(3f, 7.5f, 5, PickAtRandom<int>(1, -1)));
 				routines.Add(ChangeParticleColor(colorPair.Item1));
 				return routines;
 			
 			// Multiple Circle
 			}, colorPair => new List<IEnumerator>() { 
-				Pattern.Background.Circular(10, 10, 80, PickAtRandom<int>(1, -1), UnityEngine.Random.Range(2, 6), colorPair),
+				Pattern.Background.Circular(10, 4.5f, 80, PickAtRandom<int>(1, -1), UnityEngine.Random.Range(2, 6), colorPair),
 				Pattern.Target.Circular(3f, 7.5f, 5, PickAtRandom<int>(1, -1)),
 				ChangeParticleColor(colorPair.Item1),
 
