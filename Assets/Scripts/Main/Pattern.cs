@@ -73,7 +73,7 @@ public class Pattern : MonoBehaviour {
 
 
 	public class Background {
-		static float switchDelay = 0.5f;
+		static float switchDelay = 0.75f;
 		
 		public static IEnumerator Circular(float r, float interval, int resolution, int rotateDir, int multiplicity, Tuple<Color, Color> colorPair) {
 			yield return new WaitForSeconds(switchDelay);
@@ -91,7 +91,7 @@ public class Pattern : MonoBehaviour {
 						var color = Color.Lerp(
 							colorPair.Item1,
 							colorPair.Item2,
-							Mathf.PingPong(percentage * 5, 1)
+							Mathf.PingPong(percentage * 4, 1)
 						);
 
 						var direction = DirectionFromDegree(degree + i * (360f / multiplicity));
