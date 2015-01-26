@@ -74,14 +74,15 @@ public class Pattern : MonoBehaviour {
 
 	public class Background {
 		static float switchDelay = 0.5f;
-		static GameObject tailEnd = null;
 		
 		public static IEnumerator Circular(float r, float interval, int resolution, int rotateDir, int multiplicity, Tuple<Color, Color> colorPair) {
 			yield return new WaitForSeconds(switchDelay);
+			GameObject tailEnd = null;
 			var counter = 0;
 			
 			while (true) {
 				var tailEndZ = tailEnd == null ? popDepth - interval * 2 : tailEnd.transform.position.z;
+
 				while ((tailEndZ += interval) < popDepth) {
 					var percentage = (float)counter / resolution;
 					var degree = 360f * percentage * rotateDir;
@@ -93,7 +94,7 @@ public class Pattern : MonoBehaviour {
 							Mathf.PingPong(percentage * 5, 1)
 						);
 
-						var direction = DirectionFromDegree(degree + (i * (360f / multiplicity)));
+						var direction = DirectionFromDegree(degree + i * (360f / multiplicity));
 						var pos = direction * r;
 						pos.z = tailEndZ;
 						tailEnd = SquareGenerator.PopBackground(pos, Quaternion.identity, color);
@@ -128,10 +129,12 @@ public class Pattern : MonoBehaviour {
 		
 		public static IEnumerator Polygon(float r, float interval, int length, int multiplicity, Tuple<Color, Color> colorPair) {
 			yield return new WaitForSeconds(switchDelay);
+			GameObject tailEnd = null;
 			var counter = 0;
 			
 			while (true) {
 				var tailEndZ = tailEnd == null ? popDepth - interval * 2 : tailEnd.transform.position.z;
+
 				while ((tailEndZ += interval) < popDepth) {
 					var percentage = (float)counter / length;
 

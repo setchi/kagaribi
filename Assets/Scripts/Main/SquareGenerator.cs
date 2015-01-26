@@ -57,15 +57,15 @@ public class SquareGenerator : MonoBehaviour {
 				var multiplicity = UnityEngine.Random.Range(2, 5);
 				var rotateDir = PickAtRandom<int>(1, -1);
 				
-				routines.Add(Pattern.Background.Circular(10, 4.5f, 80, rotateDir, multiplicity, colorPair));
-				routines.Add(Pattern.Background.Circular(10, 4.5f, 80, rotateDir * -1, multiplicity, colorPair));
+				routines.Add(Pattern.Background.Circular(10, 4f, 73, rotateDir, multiplicity, colorPair));
+				routines.Add(Pattern.Background.Circular(10, 4f, 73, rotateDir * -1, multiplicity, colorPair));
 				routines.Add(Pattern.Target.Circular(3f, 7.5f, 5, PickAtRandom<int>(1, -1)));
 				routines.Add(ChangeParticleColor(colorPair.Item1));
 				return routines;
 			
 			// Multiple Circle
 			}, colorPair => new List<IEnumerator>() { 
-				Pattern.Background.Circular(10, 4.5f, 80, PickAtRandom<int>(1, -1), UnityEngine.Random.Range(2, 6), colorPair),
+				Pattern.Background.Circular(10, 4f, 73, PickAtRandom<int>(1, -1), UnityEngine.Random.Range(2, 6), colorPair),
 				Pattern.Target.Circular(3f, 7.5f, 5, PickAtRandom<int>(1, -1)),
 				ChangeParticleColor(colorPair.Item1),
 
