@@ -13,6 +13,7 @@ GameObject:
   - 199: {fileID: 19966268}
   - 114: {fileID: 11475614}
   - 114: {fileID: 11422692}
+  - 114: {fileID: 11489088}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -56,10 +57,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 157226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb942c206e1ce3458e118b423516d1f, type: 3}
+  m_Script: {fileID: 11500000, guid: c9c7d2c12e1da044dba7c1cbf9498640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   operationTarget: {fileID: 0}
+--- !u!114 &11489088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca057e66c55fe34cb9d1a75b0e00703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 19869860}
 --- !u!198 &19869860
 ParticleSystem:
   m_ObjectHideFlags: 1

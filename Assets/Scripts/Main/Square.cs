@@ -6,12 +6,13 @@ public class Square : MonoBehaviour {
 	bool isCorrectJudged = false;
 	bool stopping = true;
 	float size = 1.5f;
+	bool isTarget;
 
 	[HideInInspector]
-	public bool isTarget;
+	public ResultReceiver resultReceiver;
 
 	[HideInInspector]
-	public GameController gameController;
+	public GameObject player;
 
 	void Awake() {
 		spriteRenderer = GetComponent<SpriteRenderer>();
@@ -31,10 +32,10 @@ public class Square : MonoBehaviour {
 		if (isTarget && !isCorrectJudged && z < 0) {
 
 			if (IsCorrect(transform.position)) {
-				gameController.Correct();
+				resultReceiver.Correct();
 				
 			} else {
-				gameController.Miss();
+				resultReceiver.Miss();
 			}
 
 			isCorrectJudged = true;
@@ -42,7 +43,7 @@ public class Square : MonoBehaviour {
 	}
 
 	bool IsCorrect(Vector3 pos) {
-		pos -= gameController.player.transform.position;
+		pos -= player.transform.position;
 		return Mathf.Abs(pos.x) < size && Mathf.Abs(pos.y) < size;
 	}
 

@@ -6,32 +6,35 @@ using System.Collections.Generic;
 
 public class SquareGenerator : MonoBehaviour {
 	public GameObject squarePrefab;
-	public GameController gameController;
-	public PlayerController playerController;
+	public ResultReceiver resultReceiver;
+	public GameObject player;
 
 	static int maxSquare = 700;
 	static int currentIndex = 0;
 	static Square[] squares = new Square[maxSquare];
 
 	void Awake() {
-		for (var i = 0; i < maxSquare; i++) {
-			var square = (GameObject)Instantiate(squarePrefab, Vector3.zero, Quaternion.identity);
-			squares[i] = square.GetComponent<Square>();
-			squares[i].gameController = gameController;
-		}
+		SetupSquares();
+		StartCoroutine(StartGenerate());
 	}
 
-	void Start () {
-		StartCoroutine(PatternChanger());
+	void SetupSquares() {
+		for (var i = 0; i < maxSquare; i++) {
+			var square = (GameObject)Instantiate(squarePrefab, Vector3.zero, Quaternion.identity);
+			square.transform.SetParent(gameObject.transform);
+			squares[i] = square.GetComponent<Square>();
+			squares[i].resultReceiver = resultReceiver;
+			squares[i].player = player;
+		}
 	}
 
 	T PickAtRandom<T>(params T[] items) {
 		return items[UnityEngine.Random.Range(0, items.Length)];
 	}
 
-	IEnumerator ChangeParticleColor(Color color) {
+	IEnumerator ChangeParticleColorAfter5sec(Color color) {
 		yield return new WaitForSeconds(5f * (1 / Time.timeScale));
-		playerController.SetParticleColor(Color.white, color);
+		player.GetComponent<ParticleController>().ChangeColor(3f, Color.white, color);
 	}
 
 	Tuple<Color, Color> GenerateColorPair() {
@@ -48,7 +51,7 @@ public class SquareGenerator : MonoBehaviour {
 		);
 	}
 
-	IEnumerator PatternChanger() {
+	IEnumerator StartGenerate() {
 		var PatternRoutineList = new List<Func<Tuple<Color, Color>, List<IEnumerator>>>() {
 
 			// Multiple Cross Circle
@@ -60,20 +63,20 @@ public class SquareGenerator : MonoBehaviour {
 				routines.Add(Pattern.Background.Circular(10, 4f, 330, rotateDir, multiplicity, colorPair));
 				routines.Add(Pattern.Background.Circular(10, 4f, 330, rotateDir * -1, multiplicity, colorPair));
 				routines.Add(Pattern.Target.Circular(3f, 7.5f, 5, PickAtRandom<int>(1, -1)));
-				routines.Add(ChangeParticleColor(colorPair.Item1));
+				routines.Add(ChangeParticleColorAfter5sec(colorPair.Item1));
 				return routines;
 			
 			// Multiple Circle
 			}, colorPair => new List<IEnumerator>() { 
 				Pattern.Background.Circular(10, 4f, 330, PickAtRandom<int>(1, -1), UnityEngine.Random.Range(2, 6), colorPair),
 				Pattern.Target.Circular(3f, 7.5f, 5, PickAtRandom<int>(1, -1)),
-				ChangeParticleColor(colorPair.Item1),
+				ChangeParticleColorAfter5sec(colorPair.Item1),
 
 			// Random Position
 			}, colorPair => new List<IEnumerator>() {
 				Pattern.Background.RandomPositionAndScale(-30, 30, colorPair),
 				Pattern.Target.RandomPosition(3, 1.5f, 0),
-				ChangeParticleColor(colorPair.Item1)
+				ChangeParticleColorAfter5sec(colorPair.Item1)
 			
 			// Multiple Cross Polygon
 			}, colorPair => new List<IEnumerator>() { /**
@@ -85,7 +88,7 @@ public class SquareGenerator : MonoBehaviour {
 			}, colorPair => new List<IEnumerator>() { /**/
 				Pattern.Background.Polygon(20, 1.7f, 70, 4, colorPair),
 				Pattern.Target.RandomPosition(5, 3f, 4),
-				ChangeParticleColor(colorPair.Item1)
+				ChangeParticleColorAfter5sec(colorPair.Item1)
 			}
 		};
 
@@ -93,11 +96,11 @@ public class SquareGenerator : MonoBehaviour {
 		while (true) {
 			var colorPair = GenerateColorPair();
 			var routineWorks = PatternRoutineList[index](colorPair);
-			foreach (var routine in routineWorks) StartCoroutine(routine);
+			foreach (var routineWork in routineWorks) StartCoroutine(routineWork);
 
 			yield return new WaitForSeconds(15f);
 
-			foreach (var routine in routineWorks) StopCoroutine(routine);
+			foreach (var routineWork in routineWorks) StopCoroutine(routineWork);
 			index = ++index % PatternRoutineList.Count;
 		}
 	}

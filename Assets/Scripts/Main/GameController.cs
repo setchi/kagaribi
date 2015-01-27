@@ -1,18 +1,16 @@
-﻿using UnityEngine;
-using System.Collections;
+using UnityEngine;
 
-public class GameController : MonoBehaviour {
+public class GameController : ResultReceiver {
 	public EffectManager effectManager;
 	public ScoreManager scoreManager;
 	public FadeManager fadeManager;
 	public SoundManager soundManager;
-	public GameObject player;
 
 	void Start() {
 		fadeManager.FadeIn(1f, EaseType.linear);
 	}
 
-	public void Correct() {
+	public override void Correct() {
 		Time.timeScale += 0.01f;
 
 		soundManager.Correct();
@@ -20,11 +18,11 @@ public class GameController : MonoBehaviour {
 		effectManager.EmitCorrectEffect();
 	}
 
-	public void Miss() {
-		Time.timeScale =  1;
+	public override void Miss() {
+		Time.timeScale = 1;
 
-		soundManager.Miss();
-		scoreManager.Miss();
+		soundManager.Miss ();
+		scoreManager.Miss ();
 		effectManager.EmitMissEffect();
 	}
 }
