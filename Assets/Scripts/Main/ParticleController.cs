@@ -32,4 +32,9 @@ public class ParticleController : MonoBehaviour {
 			particleStartColor = Color.Lerp(cachedStartColor, startColor, pos.x);
 		}));
 	}
+	
+	public IEnumerator ChangeParticleColorAfter5sec(Color color) {
+		yield return new WaitForSeconds(5f * (1 / Time.timeScale));
+		ChangeColor(3f, Color.white, color);
+	}
 }

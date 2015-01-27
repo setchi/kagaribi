@@ -61,6 +61,7 @@ public class Square : MonoBehaviour {
 	public void Show() {
 		stopping = false;
 		spriteRenderer.enabled = true;
+		isCorrectJudged = false;
 	}
 
 	public void Hide() {

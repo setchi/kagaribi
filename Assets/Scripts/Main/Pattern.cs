@@ -3,8 +3,20 @@ using System;
 using System.Linq;
 using System.Collections;
 
-public class Pattern : MonoBehaviour {
+public class Pattern {
 	static float popDepth = 200;
+
+	Target target_;
+	public Target target { get { return target_; } }
+
+	Background background_;
+	public Background background { get { return background_; } }
+	
+	public Pattern(AbstractSquareManager squareManger) {
+		target_ = new Target(squareManger);
+		background_ = new Background(squareManger);
+	}
+
 	
 	static Vector3 RandomVectorFromRange(float min, float max) {
 		return new Vector3(
@@ -25,9 +37,14 @@ public class Pattern : MonoBehaviour {
 
 
 	public class Target {
-		static float switchDelay = 1f;
+		AbstractSquareManager squareManager;
+		float switchDelay = 1f;
+
+		public Target(AbstractSquareManager squareManager) {
+			this.squareManager = squareManager;
+		}
 		
-		public static IEnumerator Circular(float r, float time, int resolution, int rotateDir) {
+		public IEnumerator Circular(float r, float time, int resolution, int rotateDir) {
 			yield return new WaitForSeconds(switchDelay);
 			var counter = 0;
 			var maxChain = 2;
@@ -39,8 +56,7 @@ public class Pattern : MonoBehaviour {
 					var basePos = direction * r;
 					var pos = basePos + RandomVectorFromRange(-3, 3) / 100;
 					pos.z = popDepth + chain * 1.5f;
-					
-					SquareGenerator.PopTarget(pos, Quaternion.identity);
+					squareManager.PopTarget(pos, Quaternion.identity);
 				});
 				
 				counter = ++counter % resolution;
@@ -49,7 +65,7 @@ public class Pattern : MonoBehaviour {
 			}
 		}
 		
-		public static IEnumerator RandomPosition(float range, float interval, float ignoreRange = 0) {
+		public IEnumerator RandomPosition(float range, float interval, float ignoreRange = 0) {
 			yield return new WaitForSeconds(switchDelay);
 			int maxChain = 3;
 			
@@ -63,7 +79,7 @@ public class Pattern : MonoBehaviour {
 					var pos = basePos + RandomVectorFromRange(-3, 3) / 100;
 					pos.z = popDepth + chain * 2f;
 
-					SquareGenerator.PopTarget(pos, Quaternion.identity);
+					squareManager.PopTarget(pos, Quaternion.identity);
 				});
 				
 				yield return new WaitForSeconds(interval);
@@ -73,9 +89,14 @@ public class Pattern : MonoBehaviour {
 
 
 	public class Background {
-		static float switchDelay = 0.75f;
+		AbstractSquareManager squareManager;
+		float switchDelay = 0.75f;
+
+		public Background(AbstractSquareManager squareManager) {
+			this.squareManager = squareManager;
+		}
 		
-		public static IEnumerator Circular(float r, float interval, int depthOfRound, int rotateDir, int multiplicity, Tuple<Color, Color> colorPair) {
+		public IEnumerator Circular(float r, float interval, int depthOfRound, int rotateDir, int multiplicity, Tuple<Color, Color> colorPair) {
 			yield return new WaitForSeconds(switchDelay);
 			GameObject tailEnd = null;
 			var counter = 0;
@@ -98,7 +119,7 @@ public class Pattern : MonoBehaviour {
 						var direction = DirectionFromDegree(degree + i * (360f / multiplicity));
 						var pos = direction * r;
 						pos.z = tailEndZ;
-						tailEnd = SquareGenerator.PopBackground(pos, Quaternion.identity, color);
+						tailEnd = squareManager.PopBackground(pos, Quaternion.identity, color);
 					});
 
 					counter = ++counter % resolution;
@@ -108,7 +129,7 @@ public class Pattern : MonoBehaviour {
 			}
 		}
 		
-		public static IEnumerator RandomPositionAndScale(float min, float max, Tuple<Color, Color> colorPair) {
+		public IEnumerator RandomPositionAndScale(float min, float max, Tuple<Color, Color> colorPair) {
 			yield return new WaitForSeconds(switchDelay);
 			bool collerToggle = false;
 			
@@ -120,7 +141,7 @@ public class Pattern : MonoBehaviour {
 				
 				pos.z = popDepth;
 				var color = (collerToggle = !collerToggle) ? colorPair.Item1 : colorPair.Item2;
-				var square = SquareGenerator.PopBackground(pos, Quaternion.identity, color);
+				var square = squareManager.PopBackground(pos, Quaternion.identity, color);
 				var scale = RandomVectorFromRange(0.5f, 2);
 				square.transform.localScale = scale;
 				
@@ -128,7 +149,7 @@ public class Pattern : MonoBehaviour {
 			}
 		}
 		
-		public static IEnumerator Polygon(float r, float interval, int length, int multiplicity, Tuple<Color, Color> colorPair) {
+		public IEnumerator Polygon(float r, float interval, int length, int multiplicity, Tuple<Color, Color> colorPair) {
 			yield return new WaitForSeconds(switchDelay);
 			GameObject tailEnd = null;
 			var counter = 0;
@@ -154,7 +175,7 @@ public class Pattern : MonoBehaviour {
 
 						pos.z = tailEndZ;
 
-						tailEnd = SquareGenerator.PopBackground(pos, Quaternion.identity, color);
+						tailEnd = squareManager.PopBackground(pos, Quaternion.identity, color);
 						tailEnd.transform.localScale = Vector3.one * 0.5f;
 					});
 
