@@ -9,7 +9,7 @@ public class SquareGenerator : MonoBehaviour {
 	public GameController gameController;
 	public PlayerController playerController;
 
-	static int maxSquare = 3000;
+	static int maxSquare = 700;
 	static int currentIndex = 0;
 	static Square[] squares = new Square[maxSquare];
 
@@ -54,18 +54,18 @@ public class SquareGenerator : MonoBehaviour {
 			// Multiple Cross Circle
 			colorPair => {
 				var routines = new List<IEnumerator>();
-				var multiplicity = UnityEngine.Random.Range(2, 5);
+				var multiplicity = UnityEngine.Random.Range(2, 6);
 				var rotateDir = PickAtRandom<int>(1, -1);
 				
-				routines.Add(Pattern.Background.Circular(10, 4f, 90, rotateDir, multiplicity, colorPair));
-				routines.Add(Pattern.Background.Circular(10, 4f, 90, rotateDir * -1, multiplicity, colorPair));
+				routines.Add(Pattern.Background.Circular(10, 4f, 330, rotateDir, multiplicity, colorPair));
+				routines.Add(Pattern.Background.Circular(10, 4f, 330, rotateDir * -1, multiplicity, colorPair));
 				routines.Add(Pattern.Target.Circular(3f, 7.5f, 5, PickAtRandom<int>(1, -1)));
 				routines.Add(ChangeParticleColor(colorPair.Item1));
 				return routines;
 			
 			// Multiple Circle
 			}, colorPair => new List<IEnumerator>() { 
-				Pattern.Background.Circular(10, 4f, 90, PickAtRandom<int>(1, -1), UnityEngine.Random.Range(2, 6), colorPair),
+				Pattern.Background.Circular(10, 4f, 330, PickAtRandom<int>(1, -1), UnityEngine.Random.Range(2, 6), colorPair),
 				Pattern.Target.Circular(3f, 7.5f, 5, PickAtRandom<int>(1, -1)),
 				ChangeParticleColor(colorPair.Item1),
 
@@ -83,7 +83,7 @@ public class SquareGenerator : MonoBehaviour {
 			
 			// Cross Square
 			}, colorPair => new List<IEnumerator>() { /**/
-				Pattern.Background.Polygon(20, 1.5f, 70, 4, colorPair),
+				Pattern.Background.Polygon(20, 1.7f, 70, 4, colorPair),
 				Pattern.Target.RandomPosition(5, 3f, 4),
 				ChangeParticleColor(colorPair.Item1)
 			}

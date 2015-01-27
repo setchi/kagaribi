@@ -24,7 +24,7 @@ public class Square : MonoBehaviour {
 		transform.Translate(0, 0, -30 * Time.deltaTime * Time.timeScale);
 
 		var z = transform.position.z;
-		if (transform.position.z < -20) {
+		if (z < -20) {
 			Hide();
 		}
 		

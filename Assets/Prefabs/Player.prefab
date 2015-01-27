@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fastestInterval: 0
-  latestInterval: .200000003
+  latestInterval: .100000001
   maxAlpha: 1
   minAlpha: .550000012
   spriteRenderer: {fileID: 21295540}
@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb942c206e1ce3458e118b423516d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  operationTarget: {fileID: 0}
 --- !u!198 &19869860
 ParticleSystem:
   m_ObjectHideFlags: 1

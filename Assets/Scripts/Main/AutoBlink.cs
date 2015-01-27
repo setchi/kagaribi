@@ -11,10 +11,10 @@ public class AutoBlink : MonoBehaviour {
 
 	void Start () {
 		color = spriteRenderer.color;
-		StartCoroutine(Blink());
+		StartCoroutine(StartBlink());
 	}
 
-	IEnumerator Blink() {
+	IEnumerator StartBlink() {
 		while (true) {
 			color.a = random(minAlpha, maxAlpha);
 			spriteRenderer.color = color;

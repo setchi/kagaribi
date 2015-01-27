@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
+	public GameObject operationTarget;
 	float controllSpeed = 1;
 	ParticleSystem particleSystem;
 
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour {
 		float x = Mathf.Clamp(velocity.x, -1f, 1f);
 		float y = Mathf.Clamp(velocity.y, -1f, 1f);
 		
-		Camera.main.transform.Translate(
+		operationTarget.transform.Translate(
 			x * controllSpeed,
 			y * controllSpeed,
 			0

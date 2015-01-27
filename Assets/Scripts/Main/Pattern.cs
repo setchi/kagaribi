@@ -75,10 +75,11 @@ public class Pattern : MonoBehaviour {
 	public class Background {
 		static float switchDelay = 0.75f;
 		
-		public static IEnumerator Circular(float r, float interval, int resolution, int rotateDir, int multiplicity, Tuple<Color, Color> colorPair) {
+		public static IEnumerator Circular(float r, float interval, int depthOfRound, int rotateDir, int multiplicity, Tuple<Color, Color> colorPair) {
 			yield return new WaitForSeconds(switchDelay);
 			GameObject tailEnd = null;
 			var counter = 0;
+			var resolution = Mathf.RoundToInt(depthOfRound / interval);
 			
 			while (true) {
 				var tailEndZ = tailEnd == null ? popDepth - interval * 2 : tailEnd.transform.position.z;
