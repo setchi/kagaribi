@@ -12,9 +12,9 @@ public class Pattern {
 	Background background_;
 	public Background background { get { return background_; } }
 	
-	public Pattern(AbstractSquareManager squareManger) {
-		target_ = new Target(squareManger);
-		background_ = new Background(squareManger);
+	public Pattern(AbstractSquareGenerator squareGenerator) {
+		target_ = new Target(squareGenerator);
+		background_ = new Background(squareGenerator);
 	}
 
 	
@@ -37,11 +37,11 @@ public class Pattern {
 
 
 	public class Target {
-		AbstractSquareManager squareManager;
+		AbstractSquareGenerator squareGenerator;
 		float switchDelay = 1f;
 
-		public Target(AbstractSquareManager squareManager) {
-			this.squareManager = squareManager;
+		public Target(AbstractSquareGenerator squareGenerator) {
+			this.squareGenerator = squareGenerator;
 		}
 		
 		public IEnumerator Circular(float r, float time, int resolution, int rotateDir) {
@@ -56,7 +56,7 @@ public class Pattern {
 					var basePos = direction * r;
 					var pos = basePos + RandomVectorFromRange(-3, 3) / 100;
 					pos.z = popDepth + chain * 1.5f;
-					squareManager.PopTarget(pos, Quaternion.identity);
+					squareGenerator.PopTarget(pos, Quaternion.identity);
 				});
 				
 				counter = ++counter % resolution;
@@ -79,7 +79,7 @@ public class Pattern {
 					var pos = basePos + RandomVectorFromRange(-3, 3) / 100;
 					pos.z = popDepth + chain * 2f;
 
-					squareManager.PopTarget(pos, Quaternion.identity);
+					squareGenerator.PopTarget(pos, Quaternion.identity);
 				});
 				
 				yield return new WaitForSeconds(interval);
@@ -89,11 +89,11 @@ public class Pattern {
 
 
 	public class Background {
-		AbstractSquareManager squareManager;
+		AbstractSquareGenerator squareGenerator;
 		float switchDelay = 0.75f;
 
-		public Background(AbstractSquareManager squareManager) {
-			this.squareManager = squareManager;
+		public Background(AbstractSquareGenerator squareGenerator) {
+			this.squareGenerator = squareGenerator;
 		}
 		
 		public IEnumerator Circular(float r, float interval, int depthOfRound, int rotateDir, int multiplicity, Tuple<Color, Color> colorPair) {
@@ -119,7 +119,7 @@ public class Pattern {
 						var direction = DirectionFromDegree(degree + i * (360f / multiplicity));
 						var pos = direction * r;
 						pos.z = tailEndZ;
-						tailEnd = squareManager.PopBackground(pos, Quaternion.identity, color);
+						tailEnd = squareGenerator.PopBackground(pos, Quaternion.identity, color);
 					});
 
 					counter = ++counter % resolution;
@@ -141,7 +141,7 @@ public class Pattern {
 				
 				pos.z = popDepth;
 				var color = (collerToggle = !collerToggle) ? colorPair.Item1 : colorPair.Item2;
-				var square = squareManager.PopBackground(pos, Quaternion.identity, color);
+				var square = squareGenerator.PopBackground(pos, Quaternion.identity, color);
 				var scale = RandomVectorFromRange(0.5f, 2);
 				square.transform.localScale = scale;
 				
@@ -175,7 +175,7 @@ public class Pattern {
 
 						pos.z = tailEndZ;
 
-						tailEnd = squareManager.PopBackground(pos, Quaternion.identity, color);
+						tailEnd = squareGenerator.PopBackground(pos, Quaternion.identity, color);
 						tailEnd.transform.localScale = Vector3.one * 0.5f;
 					});
 

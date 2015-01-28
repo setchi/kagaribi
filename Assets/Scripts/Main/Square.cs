@@ -29,7 +29,7 @@ public class Square : MonoBehaviour {
 			Hide();
 		}
 		
-		if (isTarget && !isCorrectJudged && z < 0) {
+		if (isTarget && !isCorrectJudged && z < 10) {
 
 			if (IsCorrect(transform.position)) {
 				resultReceiver.Correct();
