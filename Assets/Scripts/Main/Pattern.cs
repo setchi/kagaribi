@@ -61,7 +61,7 @@ public class Pattern {
 				
 				counter = ++counter % resolution;
 				
-				yield return new WaitForSeconds((time * (1 / Time.timeScale)) / resolution);
+				yield return new WaitForSeconds((time / Time.timeScale) / resolution);
 			}
 		}
 		

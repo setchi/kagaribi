@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ParticleController : MonoBehaviour {
+public class PlayerEffect : MonoBehaviour {
 	public ParticleSystem particleSystem;
 	
 	Color particleStartColor = Color.white;
@@ -23,7 +23,7 @@ public class ParticleController : MonoBehaviour {
 		particleSystem.SetParticles(particleList, particleSystem.particleCount);
 	}
 	
-	public void ChangeColor(float animationTime, Color startColor, Color endColor) {
+	void ChangeParticleColor(float animationTime, Color startColor, Color endColor) {
 		var cachedEndColor = particleEndColor;
 		var cachedStartColor = particleStartColor;
 
@@ -35,6 +35,13 @@ public class ParticleController : MonoBehaviour {
 	
 	public IEnumerator ChangeParticleColorAfter5sec(Color color) {
 		yield return new WaitForSeconds(5f * (1 / Time.timeScale));
-		ChangeColor(3f, Color.white, color);
+		ChangeParticleColor(3f, Color.white, color);
 	}
+	
+	public GameObject correctEffect;
+	
+	public void Correct() {
+		Instantiate(correctEffect, gameObject.transform.position, Quaternion.identity);
+	}
+
 }

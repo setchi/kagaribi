@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 	public GameObject player;
 	public GameObject squarePrefab;
 	public ResultReceiver resultReceiver;
-	public ParticleController particleController;
+	public PlayerEffect particleController;
 	
 	static int maxSquare = 700;
 	static int currentIndex = 0;

@@ -4,6 +4,7 @@ using System.Collections;
 
 public class EffectManager : MonoBehaviour {
 	public Image missFlush;
+	public PlayerEffect playerEffect;
 
 	public void EmitMissEffect() {
 		var color = missFlush.color;
@@ -15,6 +16,6 @@ public class EffectManager : MonoBehaviour {
 	}
 
 	public void EmitCorrectEffect() {
-
+		playerEffect.Correct();
 	}
 }
