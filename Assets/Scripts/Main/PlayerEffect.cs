@@ -40,7 +40,7 @@ public class PlayerEffect : MonoBehaviour {
 	
 	public GameObject correctEffect;
 	
-	public void Correct() {
+	public void Miss() {
 		Instantiate(correctEffect, gameObject.transform.position, Quaternion.identity);
 	}
 

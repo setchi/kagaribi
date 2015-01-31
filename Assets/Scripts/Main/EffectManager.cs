@@ -7,6 +7,8 @@ public class EffectManager : MonoBehaviour {
 	public PlayerEffect playerEffect;
 
 	public void EmitMissEffect() {
+		playerEffect.Miss();
+
 		var color = missFlush.color;
 		TweenPlayer.CancelAll(gameObject);
 		TweenPlayer.Play(gameObject, new Tween(0.3f).ValueTo(Vector3.one * 0.5f, Vector3.zero, EaseType.linear, pos => {
@@ -16,6 +18,5 @@ public class EffectManager : MonoBehaviour {
 	}
 
 	public void EmitCorrectEffect() {
-		playerEffect.Correct();
 	}
 }

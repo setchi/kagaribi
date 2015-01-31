@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21218456}
   - 114: {fileID: 11498268}
   m_Layer: 0
-  m_Name: CorrectEffect
+  m_Name: CircleEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,10 +37,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 104372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f533fe75f90b3648933fce5de91a5d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d0db754249ca85428e6dd58781f6577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMove: 1
 --- !u!212 &21218456
 SpriteRenderer:
   m_ObjectHideFlags: 1
