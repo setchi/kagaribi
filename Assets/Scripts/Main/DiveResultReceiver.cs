@@ -1,10 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
-public class GameController : ResultReceiver {
+public class DiveResultReceiver : ResultReceiver {
 	public EffectManager effectManager;
 	public ScoreManager scoreManager;
 	public FadeManager fadeManager;
 	public SoundManager soundManager;
+	public PlayerLife playerLife;
 
 	void Start() {
 		fadeManager.FadeIn(1f, EaseType.linear);
@@ -24,5 +26,7 @@ public class GameController : ResultReceiver {
 		soundManager.Miss ();
 		scoreManager.Miss ();
 		effectManager.EmitMissEffect();
+		playerLife.TakeDamage();
 	}
+
 }

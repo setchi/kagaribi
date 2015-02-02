@@ -186,7 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673892143f5914f4c82f4151f517f3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerEffect: {fileID: 780677932}
 --- !u!4 &158378320
 Transform:
   m_ObjectHideFlags: 0
@@ -455,7 +454,7 @@ GameObject:
   - 114: {fileID: 709325672}
   - 114: {fileID: 709325676}
   m_Layer: 5
-  m_Name: UI
+  m_Name: GUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

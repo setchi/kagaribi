@@ -3,9 +3,10 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 
-public class TargetMover : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
 	public GameObject operationTarget;
-	float moveSpeed = 1;
+
+	public float moveSpeed = 1;
 
 	Vector3 touchPos;
 	bool isTouch = false;

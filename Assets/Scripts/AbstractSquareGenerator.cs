@@ -16,6 +16,10 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 	void Awake() {
 		SetupSquares();
 	}
+
+	void Start() {
+		StartCoroutine(StartGenerate());
+	}
 	
 	void SetupSquares() {
 		for (var i = 0; i < maxSquare; i++) {
