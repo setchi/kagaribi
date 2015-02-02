@@ -28,8 +28,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77455612d4b22b4ebb9960f99ae131f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTarget: 0
-  gameController: {fileID: 0}
+  resultReceiver: {fileID: 0}
+  player: {fileID: 0}
 --- !u!212 &21206972
 SpriteRenderer:
   m_ObjectHideFlags: 1

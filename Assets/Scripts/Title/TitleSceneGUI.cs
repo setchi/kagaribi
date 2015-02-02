@@ -9,6 +9,6 @@ public class TitleSceneGUI : MonoBehaviour {
 	}
 
 	public void OnClickStartButton() {
-		fadeManager.FadeOut(1.5f, EaseType.linear, () => Application.LoadLevel("Main"));
+		fadeManager.FadeOut(0.5f, EaseType.linear, () => Application.LoadLevel("Main"));
 	}
 }

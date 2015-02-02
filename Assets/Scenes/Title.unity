@@ -678,7 +678,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 780677931}
-  squarePrefab: {fileID: 181988, guid: 3d3785a00e5021b44a4b1d078c4433d8, type: 2}
   resultReceiver: {fileID: 158378319}
   particleController: {fileID: 780677932}
   autoPilot: {fileID: 1125165964}

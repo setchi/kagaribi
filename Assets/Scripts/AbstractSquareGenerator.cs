@@ -5,30 +5,16 @@ using System.Collections.Generic;
 
 public abstract class AbstractSquareGenerator : MonoBehaviour {
 	public GameObject player;
-	public GameObject squarePrefab;
 	public ResultReceiver resultReceiver;
 	public PlayerEffect particleController;
-	
-	static int maxSquare = 700;
-	static int currentIndex = 0;
-	static Square[] squares = new Square[maxSquare];
-	
-	void Awake() {
-		SetupSquares();
-	}
 
 	void Start() {
+		SquareContainer.ForEach(square => {
+			square.player = player;
+			square.resultReceiver = resultReceiver;
+			square.Hide();
+		});
 		StartCoroutine(StartGenerate());
-	}
-	
-	void SetupSquares() {
-		for (var i = 0; i < maxSquare; i++) {
-			var square = (GameObject)Instantiate(squarePrefab, Vector3.zero, Quaternion.identity);
-			square.transform.SetParent(gameObject.transform);
-			squares[i] = square.GetComponent<Square>();
-			squares[i].resultReceiver = resultReceiver;
-			squares[i].player = player;
-		}
 	}
 	
 	T PickAtRandom<T>(params T[] items) {
@@ -111,12 +97,10 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 	}
 
 	public abstract GameObject PopTarget(Vector3 pos, Quaternion rot);
-	
-	
+
 	public static GameObject PopSquare(Vector3 pos, Quaternion rot, bool isTarget, Color color) {
-		squares[currentIndex].Pop(pos, rot, isTarget, color);
-		var square = squares[currentIndex].gameObject;
-		currentIndex = ++currentIndex % maxSquare;
-		return square;
+		var square = SquareContainer.GetSquare();
+		square.Pop(pos, rot, isTarget, color);
+		return square.gameObject;
 	}
 }
