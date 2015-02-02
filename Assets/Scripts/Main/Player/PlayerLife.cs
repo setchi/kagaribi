@@ -7,7 +7,7 @@ using System.Collections;
 public class PlayerLife : MonoBehaviour {
 	public PlayerMovement playerMovement;
 	public LifeGUI lifeGUI;
-	public int startingHealth = 5;
+	public int startingLife = 5;
 
 	int currentLife;
 	float invincibleTime = 1.0f;
@@ -16,7 +16,7 @@ public class PlayerLife : MonoBehaviour {
 	public bool isDead { get { return isDead_; } }
 
 	void Awake() {
-		currentLife = startingHealth;
+		currentLife = startingLife;
 	}
 
 	public void TakeDamage() {
