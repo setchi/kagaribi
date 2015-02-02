@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AutoPilotAssistant : AbstractSquareGenerator {
+public class AutoPilotHelper : AbstractSquareGenerator {
 	public AutoPilot autoPilot;
 	
 	public override GameObject PopTarget(Vector3 pos, Quaternion rot) {
