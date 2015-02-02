@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ResultSceneUI : MonoBehaviour {
+public class ResultSceneGUI : MonoBehaviour {
 	public FadeManager fadeManager;
 
 	void Awake () {

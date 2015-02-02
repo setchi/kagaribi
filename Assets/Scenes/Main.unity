@@ -421,7 +421,7 @@ GameObject:
   - 224: {fileID: 439775471}
   - 114: {fileID: 439775472}
   m_Layer: 0
-  m_Name: LifeUI
+  m_Name: LifeGUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 439775470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05b2352bd33cc694990cde696603fb0f, type: 3}
+  m_Script: {fileID: 11500000, guid: dab58ee1f894f0c4a8bb8d001f732b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerLife: {fileID: 1237972783}
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1237972786}
-  healthUI: {fileID: 439775472}
+  lifeGUI: {fileID: 439775472}
   startingHealth: 5
 --- !u!114 &1237972786
 MonoBehaviour:

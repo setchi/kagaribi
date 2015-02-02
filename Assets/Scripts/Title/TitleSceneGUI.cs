@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TitleSceneUI : MonoBehaviour {
+public class TitleSceneGUI : MonoBehaviour {
 	public FadeManager fadeManager;
 
 	void Start () {

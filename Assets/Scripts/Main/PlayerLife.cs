@@ -6,7 +6,7 @@ using System.Collections;
 
 public class PlayerLife : MonoBehaviour {
 	public PlayerMovement playerMovement;
-	public HealthUI healthUI;
+	public LifeGUI lifeGUI;
 	public int startingHealth = 5;
 
 	int currentLife;
@@ -26,7 +26,7 @@ public class PlayerLife : MonoBehaviour {
 		StartCoroutine(StartInvincibleTime());
 
 		currentLife--;
-		healthUI.SetLife(currentLife);
+		lifeGUI.SetLife(currentLife);
 
 		if (currentLife <= 0) {
 			Death();

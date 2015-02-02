@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
-public class HealthUI : MonoBehaviour {
+public class LifeGUI : MonoBehaviour {
 	public PlayerLife playerLife;
 	public GameObject healthPrefab;
 	public GameObject healthGroup;

@@ -337,7 +337,7 @@ GameObject:
   - 114: {fileID: 555331103}
   - 114: {fileID: 555331102}
   m_Layer: 5
-  m_Name: Button
+  m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 709325671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d100dec427addbe428841c56d125fd23, type: 3}
+  m_Script: {fileID: 11500000, guid: 91c4bfa860341e247965dbff6842a017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fadeManager: {fileID: 308393222}
