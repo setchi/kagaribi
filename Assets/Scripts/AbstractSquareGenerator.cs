@@ -21,7 +21,7 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 		return items[UnityEngine.Random.Range(0, items.Length)];
 	}
 
-	protected Tuple<Color, Color> GenerateColorPair() {
+	protected Tuple<Color, Color> GenerateRandomColorPair() {
 		int color1 = UnityEngine.Random.Range(0, 7);
 		int color2;
 		
@@ -48,7 +48,7 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 			routines.Add(pattern.background.Circular(10, 4f, 330, rotateDir, multiplicity, colorPair));
 			routines.Add(pattern.background.Circular(10, 4f, 330, rotateDir * -1, multiplicity, colorPair));
 			routines.Add(pattern.target.Circular(3f, 7.5f, 5, PickAtRandom<int>(1, -1)));
-			routines.Add(particleController.ChangeParticleColorAfter5sec(colorPair.Item1));
+			routines.Add(particleController.ChangeParticleColorAfterDelay(colorPair.Item1));
 			return routines;
 		});
 		
@@ -56,14 +56,14 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 		generateRoutineList.Add(colorPair => new List<IEnumerator>() { 
 			pattern.background.Circular(10, 4f, 330, PickAtRandom<int>(1, -1), UnityEngine.Random.Range(2, 6), colorPair),
 			pattern.target.Circular(3f, 7.5f, 5, PickAtRandom<int>(1, -1)),
-			particleController.ChangeParticleColorAfter5sec(colorPair.Item1),
+			particleController.ChangeParticleColorAfterDelay(colorPair.Item1),
 		});
 		
 		// Random Position
 		generateRoutineList.Add(colorPair => new List<IEnumerator>() {
 			pattern.background.RandomPositionAndScale(-30, 30, colorPair),
 			pattern.target.RandomPosition(3, 1.5f, 0),
-			particleController.ChangeParticleColorAfter5sec(colorPair.Item1)
+			particleController.ChangeParticleColorAfterDelay(colorPair.Item1)
 		});
 		
 		// Multiple Cross Polygon
@@ -76,12 +76,12 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 			}, colorPair => new List<IEnumerator>() { /**/
 			pattern.background.Polygon(20, 1.7f, 70, 4, colorPair),
 			pattern.target.RandomPosition(5, 3f, 4),
-			particleController.ChangeParticleColorAfter5sec(colorPair.Item1)
+			particleController.ChangeParticleColorAfterDelay(colorPair.Item1)
 		});
 
 		var index = 0;
 		while (true) {
-			var colorPair = GenerateColorPair();
+			var colorPair = GenerateRandomColorPair();
 			var routineWorks = generateRoutineList[index](colorPair);
 			foreach (var routineWork in routineWorks) StartCoroutine(routineWork);
 			

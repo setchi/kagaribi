@@ -602,6 +602,10 @@ Prefab:
       propertyPath: correctEffect
       value: 
       objectReference: {fileID: 104372, guid: 2b9ed2f0712f683479939b9431920279, type: 2}
+    - target: {fileID: 11479726, guid: 27e0b4d8c8e40fd47b6d479329e55ddb, type: 2}
+      propertyPath: circleEffect
+      value: 
+      objectReference: {fileID: 104372, guid: 2b9ed2f0712f683479939b9431920279, type: 2}
     m_RemovedComponents:
     - {fileID: 11470908, guid: 27e0b4d8c8e40fd47b6d479329e55ddb, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 27e0b4d8c8e40fd47b6d479329e55ddb, type: 2}

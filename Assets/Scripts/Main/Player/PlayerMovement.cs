@@ -5,7 +5,6 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 	public GameObject operationTarget;
-
 	public float moveSpeed = 1;
 
 	Vector3 touchPos;
@@ -18,7 +17,6 @@ public class PlayerMovement : MonoBehaviour {
 
 		} else if (Input.GetMouseButtonUp(0)) {
 			isTouch = false;
-
 		}
 
 		if (isTouch) {
