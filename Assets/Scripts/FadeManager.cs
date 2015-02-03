@@ -6,7 +6,7 @@ using System.Collections;
 public class FadeManager : MonoBehaviour {
 	public GameObject fadeMask;
 
-	Color maskColor_ = Color.white;
+	Color maskColor_ = Color.black;
 	public Color MaskColor {
 		set { maskColor_ = value; }
 	}

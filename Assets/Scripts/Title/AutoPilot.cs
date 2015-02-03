@@ -9,7 +9,7 @@ public class AutoPilot : MonoBehaviour {
 		if (targetQueue.Count > 0) {
 			var targetPos = targetQueue.Peek().transform.position;
 			
-			if (targetPos.z < 0) {
+			if (targetPos.z < 10) {
 				targetQueue.Dequeue();
 
 				var nextTargetPos = targetQueue.Peek().transform.position;
