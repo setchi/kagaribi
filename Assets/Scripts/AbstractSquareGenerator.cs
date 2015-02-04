@@ -21,7 +21,7 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 		return items[UnityEngine.Random.Range(0, items.Length)];
 	}
 
-	protected Tuple<Color, Color> GenerateRandomColorPair() {
+	Tuple<Color, Color> GenerateRandomColorPair() {
 		int color1 = UnityEngine.Random.Range(0, 7);
 		int color2;
 		
@@ -35,7 +35,7 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 		);
 	}
 	
-	protected IEnumerator StartGenerate() {
+	IEnumerator StartGenerate() {
 		var pattern = new Pattern(this);
 		var generateRoutineList = new List<Func<Tuple<Color, Color>, List<IEnumerator>>>();
 		
@@ -98,7 +98,7 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 
 	public abstract GameObject PopTarget(Vector3 pos, Quaternion rot);
 
-	public static GameObject PopSquare(Vector3 pos, Quaternion rot, bool isTarget, Color color) {
+	protected static GameObject PopSquare(Vector3 pos, Quaternion rot, bool isTarget, Color color) {
 		var square = SquareContainer.GetSquare();
 		square.Pop(pos, rot, isTarget, color);
 		return square.gameObject;

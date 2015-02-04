@@ -690,7 +690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1237972788}
   lifeGUI: {fileID: 439775472}
-  startingLife: 5
+  startingLife: 3
 --- !u!198 &1237972784
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -904,7 +904,7 @@ ParticleSystem:
     radius: 1
     angle: 25
     length: 5
-    boxX: 5
+    boxX: 6
     boxY: 3
     boxZ: 1
     arc: 360
@@ -2068,7 +2068,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: f4f3987ef7d34e846bb19b2e960da5d1, type: 3}
     m_FontSize: 220
-    m_FontStyle: 2
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -2934,7 +2934,7 @@ ParticleSystem:
     radius: 1
     angle: 25
     length: 5
-    boxX: 5
+    boxX: 6
     boxY: .300000012
     boxZ: 1
     arc: 360

@@ -2195,6 +2195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeManager: {fileID: 1306694267}
+  scoreText: {fileID: 47614889}
 --- !u!114 &2079698112
 MonoBehaviour:
   m_ObjectHideFlags: 0

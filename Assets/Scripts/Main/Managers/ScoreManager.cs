@@ -16,9 +16,11 @@ public class ScoreManager : MonoBehaviour {
 
 	public void Correct() {
 		score_ += 10;
+		Storage.Set("Score", score_.ToString());
 	}
 
 	public void Miss() {
 		score_ += -5;
+		Storage.Set("Score", score_.ToString());
 	}
 }
