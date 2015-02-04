@@ -2104,7 +2104,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 120}
+  m_AnchoredPosition: {x: -875, y: 120}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &1346453090
@@ -2316,7 +2316,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -120}
+  m_AnchoredPosition: {x: -875, y: -120}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &2013745199
@@ -2506,6 +2506,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeManager: {fileID: 1306694267}
+  scoreObj: {fileID: 1784341903}
+  bestObj: {fileID: 1338209066}
   scoreValue: {fileID: 735843242}
   bestValue: {fileID: 1346453092}
 --- !u!114 &2079698112

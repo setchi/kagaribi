@@ -187,7 +187,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1623553635}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -435,7 +435,7 @@ RectTransform:
   m_Children:
   - {fileID: 1884002372}
   m_Father: {fileID: 1623553635}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -690,7 +690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1237972788}
   lifeGUI: {fileID: 439775472}
-  startingLife: 4
+  startingLife: 3
 --- !u!198 &1237972784
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -2193,10 +2193,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 2088669915}
   - {fileID: 439775471}
   - {fileID: 106931356}
   - {fileID: 642348207}
-  - {fileID: 2088669915}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
@@ -2340,11 +2340,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1623553635}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 26, y: -153}
-  m_SizeDelta: {x: 300, y: 60}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2088669916
 MonoBehaviour:
@@ -2361,7 +2361,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: f4f3987ef7d34e846bb19b2e960da5d1, type: 3}
-    m_FontSize: 50
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10

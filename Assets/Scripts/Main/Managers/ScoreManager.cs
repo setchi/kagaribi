@@ -21,6 +21,8 @@ public class ScoreManager : MonoBehaviour {
 
 	public void Miss() {
 		score_ += -5;
+		if (score_ < 0) score_ = 0;
+
 		Storage.Set("Score", score_.ToString());
 	}
 }
