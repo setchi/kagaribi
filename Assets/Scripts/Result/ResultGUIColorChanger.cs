@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ResultGUIColorChanger : MonoBehaviour {
 	public PlayerEffect playerEffect;
 	public Image panelImage;
-	public Outline scoreTextDecoration;
-	public Outline returnTextDecoration;
+	public List<Outline> outlineList;
 
 	void Update () {
 		UpdateColor(playerEffect.ParticleEndColor);
@@ -14,7 +14,6 @@ public class ResultGUIColorChanger : MonoBehaviour {
 
 	void UpdateColor(Color color) {
 		//panelImage.color = color;
-		scoreTextDecoration.effectColor = color;
-		returnTextDecoration.effectColor = color;
+		outlineList.ForEach(text => text.effectColor = color);
 	}
 }
