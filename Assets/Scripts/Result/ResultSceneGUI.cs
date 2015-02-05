@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 
 public class ResultSceneGUI : MonoBehaviour {
@@ -8,16 +9,25 @@ public class ResultSceneGUI : MonoBehaviour {
 	public GameObject bestObj;
 	public Text scoreValue;
 	public Text bestValue;
+	
+	void Retry(float waitTime, Action action) { StartCoroutine(StartRetry(waitTime, action)); }
+	IEnumerator StartRetry(float waitTime, Action action) {
+		yield return new WaitForSeconds(waitTime);
+		action();
+	}
 
 	string GetBestScore() {
-		var localData = LocalStorage.Read<JsonModel.LocalData>();
-		return localData != null ? localData.bestScore : "0";
+		return LocalData.Read().bestScore ?? "0";
 	}
 
 	void UpdateBestScore(string score) {
-		var localData = LocalStorage.Read<JsonModel.LocalData>() ?? new JsonModel.LocalData();
+		var localData = LocalData.Read();
 		localData.bestScore = score;
-		LocalStorage.Write<JsonModel.LocalData>(localData);
+		LocalData.Write(localData);
+
+		// ランキング登録
+		API.ScoreRegistIfNewRecord(localData.playerInfo.id, score, checkRecord => {
+		}, www => Retry(1f, () => UpdateBestScore(score)));
 	}
 
 	void Awake () {

@@ -13,10 +13,10 @@ public class API {
 		}, onError);
 	}
 
-	public static void ScoreRegistIfNewRecord(string id, int score, Action<JsonModel.CheckRecord> onSuccess, Action<WWW> onError = null) {
+	public static void ScoreRegistIfNewRecord(string id, string score, Action<JsonModel.CheckRecord> onSuccess, Action<WWW> onError = null) {
 		var form = new Dictionary<string, string>();
 		form.Add("id", id);
-		form.Add("score", score.ToString());
+		form.Add("score", score);
 		
 		HTTP.Post(hostName + "home/regist_if_new_record.json", form, www => {
 			onSuccess(JsonMapper.ToObject<JsonModel.CheckRecord>(www.text));

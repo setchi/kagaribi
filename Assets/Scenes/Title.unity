@@ -2802,34 +2802,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
-    - target: {fileID: 100234, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11420842, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11420842, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11420842, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11420842, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11420842, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
-      propertyPath: m_Color.a
-      value: .392156869
-      objectReference: {fileID: 0}
-    - target: {fileID: 11403176, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
-      propertyPath: m_ShowMaskGraphic
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
   m_IsPrefabParent: 0

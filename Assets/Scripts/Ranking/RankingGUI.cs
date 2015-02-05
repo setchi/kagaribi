@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RankingGUI : MonoBehaviour {
 	public GameObject rankingPanel;
@@ -11,11 +12,14 @@ public class RankingGUI : MonoBehaviour {
 	public InputField nameInputField;
 	public Text messageText;
 
+	List<GameObject> rankingTableContents = new List<GameObject>();
+
 	void Awake () {
 		Hide();
 
+		var localData = LocalData.Read();
 		// ローカルにユーザ情報が無ければ新規ID取得
-		if (LocalData.Read().playerInfo == null) {
+		if (localData.playerInfo == null) {
 			FetchPlayerId();
 		}
 	}
@@ -36,7 +40,13 @@ public class RankingGUI : MonoBehaviour {
 	}
 
 	void FetchRanking() {
-		API.FetchRanking(records => DispRanking(records), www => Retry(5f, () => FetchRanking()));
+		API.FetchRanking(records => {
+			// テーブルの内容をリセット
+			rankingTableContents.ForEach(obj => DestroyObject(obj));
+			rankingTableContents.Clear();
+
+			DispRanking(records);
+		}, www => Retry(5f, () => FetchRanking()));
 	}
 
 	void DispRanking(JsonModel.Record[] records) {
@@ -48,11 +58,14 @@ public class RankingGUI : MonoBehaviour {
 			record.transform.SetParent(rankingTable.transform);
 			record.transform.localScale = Vector3.one;
 			record.GetComponent<RankRecord>().Set(elem.index + 1, elem.record, selfPlayerId);
+			rankingTableContents.Add(record);
 		}
 	}
 
 	public void Show() {
 		FetchRanking();
+		nameInputField.text = LocalData.Read().playerInfo.name;
+		messageText.text = "";
 		rankingPanel.transform.localPosition = Vector3.one;
 	}
 
@@ -63,7 +76,7 @@ public class RankingGUI : MonoBehaviour {
 	public void OnClickNameChangeButton() {
 		var name = nameInputField.text;
 
-		var maxLength = 7;
+		var maxLength = 8;
 		if (name == "" || name.Length > maxLength) {
 			messageText.text = "名前は1~" + maxLength.ToString() + "文字で入力してください";
 			return;
@@ -75,6 +88,7 @@ public class RankingGUI : MonoBehaviour {
 			return;
 		}
 
+		playerInfo.name = name;
 		UpdatePlayerName(playerInfo);
 	}
 	
@@ -85,6 +99,9 @@ public class RankingGUI : MonoBehaviour {
 			var localData = LocalData.Read();
 			localData.playerInfo = playerInfo;
 			LocalData.Write(localData);
+
+			// ランキングテーブル再取得
+			FetchRanking();
 			
 		}, www => {
 			messageText.text = "通信に失敗しました";

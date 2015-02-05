@@ -46,7 +46,7 @@ public class HTTP : MonoBehaviour {
 			onSuccess(www);
 			
 		} else {
-			Debug.Log("WWW Error: "+ www.error);
+			Debug.Log("WWW Error: " + www.error);
 			if (onError != null)
 				onError(www);
 		}
