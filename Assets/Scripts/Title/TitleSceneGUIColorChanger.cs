@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 public class TitleSceneGUIColorChanger : MonoBehaviour {
 	public PlayerEffect playerEffect;
-	public Outline gameTitleTextDecoration;
-	public Outline startButtonTextDecoration;
+	public List<Outline> textDecorations;
 	public ParticleSystem particleSystem1;
 	public ParticleSystem particleSystem2;
 	
@@ -37,7 +36,6 @@ public class TitleSceneGUIColorChanger : MonoBehaviour {
 	}
 
 	void UpdateGUIColor() {
-		gameTitleTextDecoration.effectColor = playerEffect.ParticleEndColor;
-		startButtonTextDecoration.effectColor = playerEffect.ParticleEndColor;
+		textDecorations.ForEach(outline => outline.effectColor = playerEffect.ParticleEndColor);
 	}
 }
