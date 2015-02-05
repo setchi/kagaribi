@@ -46,6 +46,7 @@ public class RankingGUI : MonoBehaviour {
 			rankingTableContents.Clear();
 
 			DispRanking(records);
+
 		}, www => Retry(5f, () => FetchRanking()));
 	}
 

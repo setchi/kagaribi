@@ -825,9 +825,33 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
-    - target: {fileID: 187352, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 22419180, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22419180, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22419180, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403176, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
+      propertyPath: m_ShowMaskGraphic
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22419180, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 1050
+      objectReference: {fileID: 0}
+    - target: {fileID: 22419180, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11420842, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
+      propertyPath: m_Color.a
+      value: .117647059
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
@@ -843,6 +867,18 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 496500076}
   m_Script: {fileID: 11500000, guid: 081e41db70549c44083d2823488411df, type: 3}
+--- !u!114 &496500080
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11444548, guid: 8ea9ccfcdabb733419cc8facb5eaa37a,
+    type: 2}
+  m_PrefabInternal: {fileID: 496500076}
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &496500082
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11449544, guid: 8ea9ccfcdabb733419cc8facb5eaa37a,
+    type: 2}
+  m_PrefabInternal: {fileID: 496500076}
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!114 &517764045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2826,6 +2862,8 @@ MonoBehaviour:
   - {fileID: 1346453091}
   - {fileID: 2013745203}
   - {fileID: 1042866421}
+  - {fileID: 496500082}
+  - {fileID: 496500080}
 --- !u!1 &2126901205
 GameObject:
   m_ObjectHideFlags: 0
