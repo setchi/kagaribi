@@ -187,7 +187,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1623553635}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2195,8 +2195,8 @@ RectTransform:
   m_Children:
   - {fileID: 2088669915}
   - {fileID: 439775471}
-  - {fileID: 106931356}
   - {fileID: 642348207}
+  - {fileID: 106931356}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
@@ -2312,6 +2312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLife: {fileID: 1237972783}
   fadeManager: {fileID: 642348209}
+  audioSource: {fileID: 1166938801}
 --- !u!1 &2088669914
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,11 +2342,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1623553635}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 26, y: -153}
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: -324, y: 648}
   m_SizeDelta: {x: 300, y: 100}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: .5, y: 1}
 --- !u!114 &2088669916
 MonoBehaviour:
   m_ObjectHideFlags: 0
