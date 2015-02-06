@@ -13,9 +13,10 @@ public class RankingGUI : MonoBehaviour {
 	public Text messageText;
 
 	List<GameObject> rankingTableContents = new List<GameObject>();
+	bool isHiding = true;
 
 	void Awake () {
-		Hide();
+		rankingPanel.transform.localPosition = new Vector3(0, -100000, 0);
 
 		var localData = LocalData.Read();
 		// ローカルにユーザ情報が無ければ新規ID取得
@@ -64,14 +65,27 @@ public class RankingGUI : MonoBehaviour {
 	}
 
 	public void Show() {
+		if (!isHiding)return;
+		isHiding = false;
+
 		FetchRanking();
 		nameInputField.text = LocalData.Read().playerInfo.name;
 		messageText.text = "";
+
 		rankingPanel.transform.localPosition = Vector3.one;
+		rankingPanel.transform.localScale = Vector3.one / 2;
+		TweenPlayer.Play(gameObject, new Tween(0.3f).ValueTo(Vector3.one / 2, Vector3.one, EaseType.easeOutBack, pos => {
+			rankingPanel.transform.localScale = pos;
+		}));
 	}
 
 	public void Hide() {
-		rankingPanel.transform.localPosition = new Vector3(0, -100000, 0);
+		if (isHiding) return;
+		isHiding = true;
+
+		TweenPlayer.Play(gameObject, new Tween(0.3f).ValueTo(Vector3.one, Vector3.one / 2, EaseType.easeInBack, pos => {
+			rankingPanel.transform.localScale = pos;
+		}).Complete(() => rankingPanel.transform.localPosition = new Vector3(0, -100000, 0)));
 	}
 
 	public void OnClickNameChangeButton() {
