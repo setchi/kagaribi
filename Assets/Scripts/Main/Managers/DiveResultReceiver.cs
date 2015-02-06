@@ -12,8 +12,14 @@ public class DiveResultReceiver : ResultReceiver {
 		fadeManager.FadeIn(1f, EaseType.linear);
 	}
 
-	public override void Correct() {
-		Time.timeScale += 0.01f;
+	public override void Perfect() {
+		soundManager.Correct();
+		scoreManager.Correct();
+		effectManager.EmitCorrectEffect();
+	}
+
+	public override void Good() {
+		Time.timeScale += 0.02f;
 
 		soundManager.Correct();
 		scoreManager.Correct();

@@ -4,25 +4,32 @@ using System.Collections;
 
 public class ScoreManager : MonoBehaviour {
 	public Text scoreText;
-
-	void Update () {
-		scoreText.text = Mathf.RoundToInt(score_).ToString();
-	}
+	int combo = 0;
 
 	float score_;
-	public float Score {
-		get { return score_; }
+	public int Score {
+		get { return Mathf.RoundToInt(score_); }
 	}
 
 	public void Correct() {
-		score_ += 10;
-		Storage.Set("Score", score_.ToString());
+		combo++;
+		score_ += combo;
+		Apply();
 	}
 
 	public void Miss() {
-		score_ += -5;
-		if (score_ < 0) score_ = 0;
+		combo = 0;
 
-		Storage.Set("Score", score_.ToString());
+		score_ *= 0.95f;
+		if (score_ < 0)
+			score_ = 0;
+
+		Apply();
+	}
+
+	void Apply() {
+		var stringifyScore = Score.ToString();
+		Storage.Set("Score", stringifyScore);
+		scoreText.text = stringifyScore;
 	}
 }

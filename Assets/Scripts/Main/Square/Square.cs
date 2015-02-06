@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Square : MonoBehaviour {
@@ -31,9 +31,12 @@ public class Square : MonoBehaviour {
 		
 		if (isTarget && !isCorrectJudged && z < 10) {
 
-			if (IsCorrect(transform.position)) {
-				resultReceiver.Correct();
+			if (IsCorrect(transform.position, size / 3)) {
+				resultReceiver.Perfect();
 				
+			} else if (IsCorrect(transform.position, size)) {
+				resultReceiver.Good();
+
 			} else {
 				resultReceiver.Miss();
 			}
@@ -42,7 +45,7 @@ public class Square : MonoBehaviour {
 		}
 	}
 
-	bool IsCorrect(Vector3 pos) {
+	bool IsCorrect(Vector3 pos, float size) {
 		pos -= player.transform.position;
 		return Mathf.Abs(pos.x) < size && Mathf.Abs(pos.y) < size;
 	}
