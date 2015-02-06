@@ -19,7 +19,7 @@ public class DiveResultReceiver : ResultReceiver {
 	}
 
 	public override void Good() {
-		Time.timeScale += 0.02f;
+		Time.timeScale += 0.01f;
 
 		soundManager.Correct();
 		scoreManager.Correct();

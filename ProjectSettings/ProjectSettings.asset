@@ -12,7 +12,7 @@ PlayerSettings:
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: jp.setchi
-  productName: Kugutter
+  productName: "\u30AB\u30AC\u30EA\u30D3"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   defaultScreenWidth: 1024
@@ -72,7 +72,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  iPhoneBundleIdentifier: jp.setchi.kugutter
+  iPhoneBundleIdentifier: jp.setchi.kagaribi
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
@@ -115,8 +115,8 @@ PlayerSettings:
     rgba: 0
   AndroidTargetDevice: 3
   AndroidSplashScreenScale: 0
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: C:/Users/15012/Desktop/user.keystore
+  AndroidKeyaliasName: kagaribi
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   androidEnableBanner: 1
@@ -130,6 +130,20 @@ PlayerSettings:
     m_Icons:
     - m_Icon: {fileID: 0}
       m_Size: 128
+  - m_BuildTarget: Android
+    m_Icons:
+    - m_Icon: {fileID: 2800000, guid: 5efde4268f9aa9b479867e2804a85418, type: 3}
+      m_Size: 192
+    - m_Icon: {fileID: 0}
+      m_Size: 144
+    - m_Icon: {fileID: 0}
+      m_Size: 96
+    - m_Icon: {fileID: 0}
+      m_Size: 72
+    - m_Icon: {fileID: 0}
+      m_Size: 48
+    - m_Icon: {fileID: 0}
+      m_Size: 36
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone
     m_StaticBatching: 1
