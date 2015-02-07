@@ -422,7 +422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &439775471
 RectTransform:
   m_ObjectHideFlags: 0
@@ -689,8 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1237972788}
-  lifeGUI: {fileID: 439775472}
-  startingLife: 3
+  startingLife: 1
 --- !u!198 &1237972784
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -2342,11 +2341,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1623553635}
   m_RootOrder: 0
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -324, y: 648}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 26, y: -20}
   m_SizeDelta: {x: 300, y: 100}
-  m_Pivot: {x: .5, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &2088669916
 MonoBehaviour:
   m_ObjectHideFlags: 0
