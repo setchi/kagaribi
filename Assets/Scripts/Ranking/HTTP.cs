@@ -1,23 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class HTTP : MonoBehaviour {
-	private static HTTP instance;
-	
-	// Singleton
-	private HTTP () {}
-	
-	static HTTP Instance {
-		get {
-			if( instance == null ) {
-				GameObject go = new GameObject("HTTPSingleton");
-				instance = go.AddComponent<HTTP>();
-			}
-			return instance;
-		}
-	}
+public class HTTP : SingletonGameObject<HTTP> {
 
 	public static WWW Get(string url, Action<WWW> onSuccess, Action<WWW> onError = null) {
 		WWW www = new WWW (url);
