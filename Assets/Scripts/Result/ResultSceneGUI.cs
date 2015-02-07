@@ -9,6 +9,7 @@ public class ResultSceneGUI : MonoBehaviour {
 	public GameObject bestObj;
 	public Text scoreValue;
 	public Text bestValue;
+	public AudioClip onePointSE;
 	
 	void Retry(float waitTime, Action action) { StartCoroutine(StartRetry(waitTime, action)); }
 	IEnumerator StartRetry(float waitTime, Action action) {
@@ -84,6 +85,7 @@ public class ResultSceneGUI : MonoBehaviour {
 	}
 
 	public void OnClickReturnButton() {
+		AudioPlayer.Play(onePointSE);
 		fadeManager.FadeOut(0.5f, EaseType.linear, () => Application.LoadLevel("Title"));
 	}
 }

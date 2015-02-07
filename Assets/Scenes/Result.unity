@@ -2822,6 +2822,7 @@ MonoBehaviour:
   bestObj: {fileID: 1338209066}
   scoreValue: {fileID: 735843242}
   bestValue: {fileID: 1346453092}
+  onePointSE: {fileID: 8300000, guid: ddc5217bb3b65634b82399a3b4aff3d2, type: 3}
 --- !u!114 &2079698112
 MonoBehaviour:
   m_ObjectHideFlags: 0
