@@ -16,6 +16,7 @@ public class GameOverManager : MonoBehaviour {
 
 	void GameOver() {
 		gameOver = true;
+		Time.timeScale = 1;
 
 		var volume = audioSource.volume;
 		TweenPlayer.Play(gameObject, new Tween(1f).ValueTo(Vector3.one, Vector3.zero, EaseType.linear, pos => {
