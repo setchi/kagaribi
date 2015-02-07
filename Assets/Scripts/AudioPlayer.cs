@@ -16,7 +16,7 @@ public class AudioPlayer : MonoBehaviour {
 				instance = FindObjectOfType<AudioPlayer>();
 				
 				if (instance == null) {
-					GameObject go = new GameObject("AudioManagerSingleton");
+					GameObject go = new GameObject("AudioPlayerSingleton");
 					instance = go.AddComponent<AudioPlayer>();
 				}
 			}

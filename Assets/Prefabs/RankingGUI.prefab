@@ -97,6 +97,7 @@ GameObject:
   - 222: {fileID: 22216440}
   - 114: {fileID: 11449278}
   - 114: {fileID: 11490696}
+  - 114: {fileID: 11419280}
   m_Layer: 5
   m_Name: CloseButton
   m_TagString: Untagged
@@ -588,6 +589,27 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11419280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &11420316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -848,6 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081e41db70549c44083d2823488411df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onePointSE: {fileID: 8300000, guid: ddc5217bb3b65634b82399a3b4aff3d2, type: 3}
   rankingPanel: {fileID: 187352}
   rankingTable: {fileID: 117400}
   rankRecordPrefab: {fileID: 157682, guid: 6b910ff0b4dd3c448962af501018026a, type: 2}

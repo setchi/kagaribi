@@ -2105,31 +2105,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: .501960814}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
---- !u!1 &1470308809
-GameObject:
-  m_PrefabParentObject: {fileID: 123534, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
-  m_PrefabInternal: {fileID: 1857655919}
---- !u!114 &1470308813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1470308809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!1 &1586049167
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,10 +2586,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
-    - target: {fileID: 11458492, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
-      propertyPath: onePointSE
-      value: 
-      objectReference: {fileID: 8300000, guid: ddc5217bb3b65634b82399a3b4aff3d2, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ea9ccfcdabb733419cc8facb5eaa37a, type: 2}
   m_IsPrefabParent: 0

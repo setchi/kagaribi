@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class EffectManager : MonoBehaviour {
+public class ScreenEffectManager : MonoBehaviour {
 	public Image missFlush;
 	public PlayerEffect playerEffect;
 

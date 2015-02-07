@@ -2,10 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 public class DiveResultReceiver : ResultReceiver {
-	public EffectManager effectManager;
 	public ScoreManager scoreManager;
 	public FadeManager fadeManager;
-	public SoundManager soundManager;
+	public SoundEffectManager soundEffectManager;
+	public ScreenEffectManager screenEffectManager;
 	public PlayerLife playerLife;
 
 	void Start() {
@@ -13,26 +13,23 @@ public class DiveResultReceiver : ResultReceiver {
 	}
 
 	public override void Perfect() {
-		soundManager.Correct();
+		soundEffectManager.Correct();
 		scoreManager.Correct();
-		effectManager.EmitCorrectEffect();
+		screenEffectManager.EmitCorrectEffect();
 	}
 
 	public override void Good() {
 		Time.timeScale += 0.01f;
 
-		soundManager.Correct();
+		soundEffectManager.Correct();
 		scoreManager.Correct();
-		effectManager.EmitCorrectEffect();
+		screenEffectManager.EmitCorrectEffect();
 	}
 
 	public override void Miss() {
-		Time.timeScale = 1;
-
-		soundManager.Miss ();
-		scoreManager.Miss ();
-		effectManager.EmitMissEffect();
-		playerLife.TakeDamage();
+		soundEffectManager.Miss();
+		screenEffectManager.EmitMissEffect();
+		playerLife.Death();
 	}
 
 }

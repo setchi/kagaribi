@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class RankingGUI : MonoBehaviour {
+	public AudioClip onePointSE;
 	public GameObject rankingPanel;
 	public GameObject rankingTable;
 	public GameObject rankRecordPrefab;
@@ -37,7 +38,7 @@ public class RankingGUI : MonoBehaviour {
 			localData.playerInfo = playerInfo;
 			LocalData.Write(localData);
 
-		}, www => Retry(3f, () => FetchPlayerId()));
+		}, www => Retry(3f, FetchPlayerId));
 	}
 
 	void FetchRanking() {
@@ -48,7 +49,7 @@ public class RankingGUI : MonoBehaviour {
 
 			DispRanking(records);
 
-		}, www => Retry(5f, () => FetchRanking()));
+		}, www => Retry(5f, FetchRanking));
 	}
 
 	void DispRanking(JsonModel.Record[] records) {
@@ -67,6 +68,7 @@ public class RankingGUI : MonoBehaviour {
 	public void Show() {
 		if (!isHiding)return;
 		isHiding = false;
+		AudioPlayer.Play(onePointSE);
 
 		FetchRanking();
 		nameInputField.text = LocalData.Read().playerInfo.name;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SoundManager : MonoBehaviour {
+public class SoundEffectManager : MonoBehaviour {
 	public AudioClip correctSE;
 	public AudioClip missSE;
 
