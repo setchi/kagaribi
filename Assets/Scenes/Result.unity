@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FontData:
     m_Font: {fileID: 12800000, guid: f4f3987ef7d34e846bb19b2e960da5d1, type: 3}
     m_FontSize: 120
@@ -697,7 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FontData:
     m_Font: {fileID: 12800000, guid: f4f3987ef7d34e846bb19b2e960da5d1, type: 3}
     m_FontSize: 120
@@ -2020,7 +2020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FontData:
     m_Font: {fileID: 12800000, guid: f4f3987ef7d34e846bb19b2e960da5d1, type: 3}
     m_FontSize: 120
@@ -2449,7 +2449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FontData:
     m_Font: {fileID: 12800000, guid: f4f3987ef7d34e846bb19b2e960da5d1, type: 3}
     m_FontSize: 120
@@ -2821,7 +2821,9 @@ MonoBehaviour:
   scoreObj: {fileID: 1784341903}
   bestObj: {fileID: 1338209066}
   scoreValue: {fileID: 735843242}
+  scoreText: {fileID: 47614889}
   bestValue: {fileID: 1346453092}
+  bestText: {fileID: 450135314}
   onePointSE: {fileID: 8300000, guid: ddc5217bb3b65634b82399a3b4aff3d2, type: 3}
 --- !u!114 &2079698112
 MonoBehaviour:

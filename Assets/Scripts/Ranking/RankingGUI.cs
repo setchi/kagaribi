@@ -120,8 +120,6 @@ public class RankingGUI : MonoBehaviour {
 			// ランキングテーブル再取得
 			FetchRanking();
 			
-		}, www => {
-			messageText.text = "通信に失敗しました";
-		});
+		}, www => messageText.text = "通信に失敗しました");
 	}
 }

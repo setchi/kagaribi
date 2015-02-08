@@ -8,7 +8,9 @@ public class ResultSceneGUI : MonoBehaviour {
 	public GameObject scoreObj;
 	public GameObject bestObj;
 	public Text scoreValue;
+	public Text scoreText;
 	public Text bestValue;
+	public Text bestText;
 	public AudioClip onePointSE;
 	
 	void Retry(float waitTime, Action action) { StartCoroutine(StartRetry(waitTime, action)); }
@@ -54,6 +56,11 @@ public class ResultSceneGUI : MonoBehaviour {
 			scoreObj.transform.localPosition,
 			new Vector3(0, y, 0), EaseType.easeOutBack,
 			pos => scoreObj.transform.localPosition = pos
+		).ValueTo(
+			Vector3.zero,
+			Vector3.one,
+			EaseType.linear,
+			pos => scoreText.color = scoreValue.color = new Color(1, 1, 1, pos.x)
 		));
 
 		yield return new WaitForSeconds(0.15f);
@@ -62,23 +69,28 @@ public class ResultSceneGUI : MonoBehaviour {
 			bestObj.transform.localPosition,
 			new Vector3(0, -y, 0), EaseType.easeOutBack,
 			pos => bestObj.transform.localPosition = pos
+		).ValueTo(
+			Vector3.zero,
+			Vector3.one,
+			EaseType.linear,
+			pos => bestText.color = bestValue.color = new Color(1, 1, 1, pos.x)
 		));
 
 		yield return new WaitForSeconds(0.4f);
 
 
 		// Score count up
-		var currentScore = float.Parse(Storage.Get("Score") ?? "0");
+		var score = float.Parse(Storage.Get("Score") ?? "0");
 		var countUpSmoothing = 6f;
 
-		for (float score = 0f; score <= currentScore;) {
-			var scoreText = Mathf.RoundToInt(score).ToString();
+		for (float counter = 0f; counter <= score;) {
+			var scoreText = Mathf.RoundToInt(counter).ToString();
 			scoreValue.text = scoreText;
 
-			if (score > bestScore)
+			if (counter > bestScore)
 				bestValue.text = scoreText;
 
-			score += (currentScore - score) * countUpSmoothing * Time.deltaTime;
+			counter += (score - counter) * countUpSmoothing * Time.deltaTime;
 
 			yield return new WaitForEndOfFrame();
 		}
