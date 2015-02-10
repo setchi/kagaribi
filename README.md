@@ -5,4 +5,6 @@ Kagaribi
 
 音楽提供：魔王魂
 
+[\[Google Play\] Kagaribi](https://play.google.com/store/apps/details?id=jp.setchi.kagaribi)
+
 ![kagaribi](Assets/Textures/title_ss.png "kagaribi")
