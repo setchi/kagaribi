@@ -2838,7 +2838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerEffect: {fileID: 517764047}
   panelImage: {fileID: 2126901207}
-  outlineList:
+  textDecorations:
   - {fileID: 47614892}
   - {fileID: 735843241}
   - {fileID: 450135313}

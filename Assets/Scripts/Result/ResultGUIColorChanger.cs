@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class ResultGUIColorChanger : MonoBehaviour {
 	public PlayerEffect playerEffect;
 	public Image panelImage;
-	public List<Outline> outlineList;
+	public List<Shadow> textDecorations;
 
 	void Update () {
 		UpdateColor(playerEffect.ParticleEndColor);
@@ -14,6 +14,6 @@ public class ResultGUIColorChanger : MonoBehaviour {
 
 	void UpdateColor(Color color) {
 		//panelImage.color = color;
-		outlineList.ForEach(text => text.effectColor = color);
+		textDecorations.ForEach(text => text.effectColor = color);
 	}
 }

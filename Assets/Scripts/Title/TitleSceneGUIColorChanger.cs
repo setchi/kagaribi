@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class TitleSceneGUIColorChanger : MonoBehaviour {
 	public PlayerEffect playerEffect;
-	public List<Outline> textDecorations;
+	public List<Shadow> textDecorations;
 	public ParticleSystem particleSystem1;
 	public ParticleSystem particleSystem2;
 	
