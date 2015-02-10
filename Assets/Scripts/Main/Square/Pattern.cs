@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Linq;
 using System.Collections;
@@ -12,7 +12,7 @@ public class Pattern {
 	Background background_;
 	public Background background { get { return background_; } }
 	
-	public Pattern(AbstractSquareGenerator squareGenerator) {
+	public Pattern(SquareGenerator squareGenerator) {
 		target_ = new Target(squareGenerator);
 		background_ = new Background(squareGenerator);
 	}
@@ -37,10 +37,10 @@ public class Pattern {
 
 
 	public class Target {
-		AbstractSquareGenerator squareGenerator;
+		SquareGenerator squareGenerator;
 		float switchDelay = 1f;
 
-		public Target(AbstractSquareGenerator squareGenerator) {
+		public Target(SquareGenerator squareGenerator) {
 			this.squareGenerator = squareGenerator;
 		}
 		
@@ -89,10 +89,10 @@ public class Pattern {
 
 
 	public class Background {
-		AbstractSquareGenerator squareGenerator;
+		SquareGenerator squareGenerator;
 		float switchDelay = 0.75f;
 
-		public Background(AbstractSquareGenerator squareGenerator) {
+		public Background(SquareGenerator squareGenerator) {
 			this.squareGenerator = squareGenerator;
 		}
 		

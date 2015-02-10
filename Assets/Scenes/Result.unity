@@ -758,6 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aecfe18465b4d964dadfd80535ca2c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  squareGenerator: {fileID: 1150874767}
 --- !u!1 &517764046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2140,7 +2141,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1150874766}
-  - 114: {fileID: 1150874765}
+  - 114: {fileID: 1150874767}
   m_Layer: 0
   m_Name: SquareGenerator
   m_TagString: Untagged
@@ -2148,22 +2149,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1150874765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11419768, guid: 7f0a2ad1f83da124e9ac42794d6e0268,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1150874764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9641f344248f81e44b2516b5fbadf5e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 517764046}
-  resultReceiver: {fileID: 639026843}
-  particleController: {fileID: 517764047}
-  autoPilot: {fileID: 517764045}
 --- !u!4 &1150874766
 Transform:
   m_ObjectHideFlags: 0
@@ -2176,6 +2161,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!114 &1150874767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1150874764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8dfe49e33685740b5eb12dc4eaa713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 517764046}
+  resultReceiver: {fileID: 639026843}
+  particleController: {fileID: 517764047}
 --- !u!1001 &1229082912
 Prefab:
   m_ObjectHideFlags: 0

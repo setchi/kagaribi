@@ -3,10 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract class AbstractSquareGenerator : MonoBehaviour {
+public class SquareGenerator : MonoBehaviour {
 	public GameObject player;
 	public ResultReceiver resultReceiver;
 	public PlayerEffect particleController;
+	public delegate void PopEvent(GameObject square);
+	public event PopEvent onPopTarget = square => {};
 
 	void Start() {
 		SquareContainer.ForEach(square => {
@@ -95,8 +97,12 @@ public abstract class AbstractSquareGenerator : MonoBehaviour {
 	public GameObject PopBackground(Vector3 pos, Quaternion rot, Color color) {
 		return PopSquare(pos, rot, false, color);
 	}
-
-	public abstract GameObject PopTarget(Vector3 pos, Quaternion rot);
+	
+	public GameObject PopTarget(Vector3 pos, Quaternion rot) {
+		var square = PopSquare(pos, rot, true, Color.white);
+		onPopTarget(square);
+		return square;
+	}
 
 	protected static GameObject PopSquare(Vector3 pos, Quaternion rot, bool isTarget, Color color) {
 		var square = SquareContainer.GetSquare();

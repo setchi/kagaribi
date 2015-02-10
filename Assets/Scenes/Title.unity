@@ -1966,6 +1966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aecfe18465b4d964dadfd80535ca2c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  squareGenerator: {fileID: 1133860755}
 --- !u!1 &1133860754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,13 +1991,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1133860754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9641f344248f81e44b2516b5fbadf5e5, type: 3}
+  m_Script: {fileID: 11500000, guid: af8dfe49e33685740b5eb12dc4eaa713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 780677931}
   resultReceiver: {fileID: 158378319}
   particleController: {fileID: 780677932}
-  autoPilot: {fileID: 1125165964}
 --- !u!4 &1133860756
 Transform:
   m_ObjectHideFlags: 0

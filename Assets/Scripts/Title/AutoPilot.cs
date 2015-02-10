@@ -3,7 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class AutoPilot : MonoBehaviour {
+	public SquareGenerator squareGenerator;
 	Queue<GameObject> targetQueue = new Queue<GameObject>();
+
+	void Awake() {
+		squareGenerator.onPopTarget += Enqueue;
+	}
 
 	void Update() {
 		if (targetQueue.Count > 0) {
@@ -26,7 +31,7 @@ public class AutoPilot : MonoBehaviour {
 		TweenPlayer.Play(gameObject, new Tween(distance / 30).MoveTo(gameObject, pos, EaseType.easeInOutQuad));
 	}
 
-	public void Enqueue(GameObject square) {
+	void Enqueue(GameObject square) {
 		if (targetQueue.Count == 0)
 			Move(square.transform.position);
 		
