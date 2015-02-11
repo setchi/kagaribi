@@ -31,10 +31,10 @@ public class AutoPilot : MonoBehaviour {
 		TweenPlayer.Play(gameObject, new Tween(distance / 30).MoveTo(gameObject, pos, EaseType.easeInOutQuad));
 	}
 
-	void Enqueue(GameObject square) {
+	void Enqueue(GameObject target) {
 		if (targetQueue.Count == 0)
-			Move(square.transform.position);
+			Move(target.transform.position);
 		
-		targetQueue.Enqueue(square);
+		targetQueue.Enqueue(target);
 	}
 }

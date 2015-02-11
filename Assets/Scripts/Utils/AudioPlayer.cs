@@ -5,7 +5,6 @@ using System.Collections;
  * シーン遷移で音が途切れないように再生する(仮)
  **/
 public class AudioPlayer : SingletonGameObject<AudioPlayer> {
-	private static AudioPlayer instance;
 	AudioSource audioSource;
 
 	void Awake() {

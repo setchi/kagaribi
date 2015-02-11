@@ -10,12 +10,13 @@ public class SquareGenerator : MonoBehaviour {
 	public delegate void PopEvent(GameObject square);
 	public event PopEvent onPopTarget = square => {};
 
-	void Start() {
+	void Awake() {
 		SquareContainer.ForEach(square => {
 			square.player = player;
 			square.resultReceiver = resultReceiver;
 			square.Hide();
 		});
+
 		StartCoroutine(StartGenerate());
 	}
 	
@@ -69,13 +70,7 @@ public class SquareGenerator : MonoBehaviour {
 		});
 		
 		// Multiple Cross Polygon
-		generateRoutineList.Add(colorPair => new List<IEnumerator>() { /**
-				pattern.Background.Polygon(15, 1.5f, 70, 3, colorPair),
-				pattern.Target.RandomPosition(3, 1.5f, 0),
-				ChangeParticleColor(colorPair.Item1)
-			
-			// Cross Square
-			}, colorPair => new List<IEnumerator>() { /**/
+		generateRoutineList.Add(colorPair => new List<IEnumerator>() {
 			pattern.background.Polygon(20, 1.7f, 70, 4, colorPair),
 			pattern.target.RandomPosition(5, 3f, 4),
 			particleController.ChangeParticleColorAfterDelay(colorPair.Item1)
@@ -83,15 +78,20 @@ public class SquareGenerator : MonoBehaviour {
 
 		var index = 0;
 		while (true) {
-			var colorPair = GenerateRandomColorPair();
-			var routineWorks = generateRoutineList[index](colorPair);
-			foreach (var routineWork in routineWorks) StartCoroutine(routineWork);
-			
+			var routineWorks = generateRoutineList[index](GenerateRandomColorPair());
+			routineWorks.ForEach(routine => StartCoroutine(routine));
+
 			yield return new WaitForSeconds(15f);
-			
-			foreach (var routineWork in routineWorks) StopCoroutine(routineWork);
+
+			routineWorks.ForEach(routine => StopCoroutine(routine));
 			index = ++index % generateRoutineList.Count;
 		}
+	}
+	
+	GameObject PopSquare(Vector3 pos, Quaternion rot, bool isTarget, Color color) {
+		var square = SquareContainer.GetSquare();
+		square.Pop(pos, rot, isTarget, color);
+		return square.gameObject;
 	}
 	
 	public GameObject PopBackground(Vector3 pos, Quaternion rot, Color color) {
@@ -99,14 +99,8 @@ public class SquareGenerator : MonoBehaviour {
 	}
 	
 	public GameObject PopTarget(Vector3 pos, Quaternion rot) {
-		var square = PopSquare(pos, rot, true, Color.white);
-		onPopTarget(square);
-		return square;
-	}
-
-	protected static GameObject PopSquare(Vector3 pos, Quaternion rot, bool isTarget, Color color) {
-		var square = SquareContainer.GetSquare();
-		square.Pop(pos, rot, isTarget, color);
-		return square.gameObject;
+		var squareObj = PopSquare(pos, rot, true, Color.white);
+		onPopTarget(squareObj);
+		return squareObj;
 	}
 }

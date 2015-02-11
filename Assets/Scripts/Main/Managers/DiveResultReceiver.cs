@@ -27,6 +27,8 @@ public class DiveResultReceiver : ResultReceiver {
 	}
 
 	public override void Miss() {
+		Time.timeScale = 1;
+		
 		soundEffectManager.Miss();
 		screenEffectManager.EmitMissEffect();
 		playerLife.Death();
