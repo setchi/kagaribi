@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class CircleEffect : MonoBehaviour {
 
 	void Awake() {
 		var renderer = gameObject.GetComponent<SpriteRenderer>();
-		
-		TweenPlayer.Play(gameObject, new Tween(0.6f * Time.timeScale)
-		                 .ScaleTo(gameObject, Vector3.one, Vector3.one * 4f * Time.timeScale, EaseType.linear)
-		                 .FadeTo(renderer, 1, 0, EaseType.linear)
-		                 .Complete(() => DestroyObject(gameObject)));
+
+		var time = 0.6f;
+		gameObject.transform.DOScale(Vector3.one * 4f * Time.timeScale, time);
+		renderer.DOFade(0, time).OnComplete(() => DestroyObject(gameObject));
 	}
 
 	void Update() {

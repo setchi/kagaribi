@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using DG.Tweening;
 
 public class ResultSceneGUI : MonoBehaviour {
 	public FadeManager fadeManager;
@@ -42,7 +43,7 @@ public class ResultSceneGUI : MonoBehaviour {
 			// new record
 			UpdateBestScore(currentScore);
 		}
-		fadeManager.FadeIn(1f, EaseType.linear);
+		fadeManager.FadeIn(1f, DG.Tweening.Ease.Linear);
 	}
 
 	IEnumerator StartDisplayAnimation() {
@@ -52,43 +53,29 @@ public class ResultSceneGUI : MonoBehaviour {
 
 		var y = 80f;
 		var slideTime = 0.3f;
-		TweenPlayer.Play(gameObject, new Tween(slideTime).ValueTo(
-			scoreObj.transform.localPosition,
-			new Vector3(0, y, 0), EaseType.easeOutBack,
-			pos => scoreObj.transform.localPosition = pos
-		).ValueTo(
-			Vector3.zero,
-			Vector3.one,
-			EaseType.linear,
-			pos => scoreText.color = scoreValue.color = new Color(1, 1, 1, pos.x)
-		));
+		
+		scoreObj.transform.DOLocalMove(new Vector3(0, y, 0), slideTime).SetEase(Ease.OutBack);
+		scoreText.DOFade(1, slideTime);
+		scoreValue.DOFade(1, slideTime);
 
 		yield return new WaitForSeconds(0.15f);
 		
-		TweenPlayer.Play(gameObject, new Tween(slideTime).ValueTo(
-			bestObj.transform.localPosition,
-			new Vector3(0, -y, 0), EaseType.easeOutBack,
-			pos => bestObj.transform.localPosition = pos
-		).ValueTo(
-			Vector3.zero,
-			Vector3.one,
-			EaseType.linear,
-			pos => bestText.color = bestValue.color = new Color(1, 1, 1, pos.x)
-		));
+		bestObj.transform.DOLocalMove(new Vector3(0, -y, 0), slideTime).SetEase(Ease.OutBack);
+		bestText.DOFade(1, slideTime);
+		bestValue.DOFade(1, slideTime);
 
 		yield return new WaitForSeconds(0.4f);
-
 
 		// Score count up
 		var score = float.Parse(Storage.Get("Score") ?? "0");
 		var countUpSmoothing = 6f;
 
 		for (float counter = 0f; counter <= score;) {
-			var scoreText = Mathf.RoundToInt(counter).ToString();
-			scoreValue.text = scoreText;
+			var stringifyScore = Mathf.RoundToInt(counter).ToString();
+			scoreValue.text = stringifyScore;
 
 			if (counter > bestScore)
-				bestValue.text = scoreText;
+				bestValue.text = stringifyScore;
 
 			counter += (score - counter) * countUpSmoothing * Time.deltaTime;
 
@@ -98,6 +85,6 @@ public class ResultSceneGUI : MonoBehaviour {
 
 	public void OnClickReturnButton() {
 		AudioPlayer.Play(onePointSE);
-		fadeManager.FadeOut(0.5f, EaseType.linear, () => Application.LoadLevel("Title"));
+		fadeManager.FadeOut(0.5f, DG.Tweening.Ease.Linear, () => Application.LoadLevel("Title"));
 	}
 }

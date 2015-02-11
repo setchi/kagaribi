@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class PlayerEffect : MonoBehaviour {
 	public ParticleSystem particleSystem;
@@ -27,13 +28,8 @@ public class PlayerEffect : MonoBehaviour {
 	}
 	
 	void ChangeParticleColor(float animationTime, Color startColor, Color endColor) {
-		var cachedEndColor = particleEndColor_;
-		var cachedStartColor = particleStartColor_;
-
-		TweenPlayer.Play(gameObject, new Tween(animationTime).ValueTo(Vector3.zero, Vector3.one, EaseType.linear, pos => {
-			particleEndColor_ = Color.Lerp(cachedEndColor, endColor, pos.x);
-			particleStartColor_ = Color.Lerp(cachedStartColor, startColor, pos.x);
-		}));
+		DOTween.To(() => particleEndColor_, color => particleEndColor_ = color, endColor, animationTime);
+		DOTween.To(() => particleStartColor_, color => particleStartColor_ = color, startColor, animationTime);
 	}
 	
 	public IEnumerator ChangeParticleColorAfterDelay(Color color) {

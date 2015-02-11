@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class GameOverManager : MonoBehaviour {
 	public PlayerLife playerLife;
@@ -18,10 +19,7 @@ public class GameOverManager : MonoBehaviour {
 		gameOver = true;
 
 		var volume = audioSource.volume;
-		TweenPlayer.Play(gameObject, new Tween(1f).ValueTo(Vector3.one, Vector3.zero, EaseType.linear, pos => {
-			audioSource.volume = volume * pos.x;
-		}));
-
-		fadeManager.FadeOut(1f, EaseType.linear, () => Application.LoadLevel("Result"));
+		DOTween.To(() => 1, value => audioSource.volume = volume * value, 0, 1f);
+		fadeManager.FadeOut(1f, DG.Tweening.Ease.Linear, () => Application.LoadLevel("Result"));
 	}
 }

@@ -9,7 +9,7 @@ public class DiveResultReceiver : ResultReceiver {
 	public PlayerLife playerLife;
 
 	void Start() {
-		fadeManager.FadeIn(1f, EaseType.linear);
+		fadeManager.FadeIn(1f, DG.Tweening.Ease.Linear);
 	}
 
 	public override void Perfect() {

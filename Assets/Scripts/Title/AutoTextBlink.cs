@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using DG.Tweening;
 
 public class AutoTextBlink : MonoBehaviour {
 	Text text;
@@ -13,10 +14,9 @@ public class AutoTextBlink : MonoBehaviour {
 	void Blink() {
 		var textColor = text.color;
 
-		TweenPlayer.Play(gameObject, new Tween(1.5f).ValueTo(Vector3.zero, Vector3.one, EaseType.easeOutSine, pos => {
-			textColor.a = Mathf.PingPong(pos.x * 2 + 1, 1);
+		DOTween.To(() => 0f, value => {
+			textColor.a = Mathf.PingPong(value * 2 + 1, 1);
 			text.color = textColor;
-
-		}).Complete(Blink));
+		}, 1f, 1.5f).SetEase(Ease.OutSine).OnComplete(Blink);
 	}
 }

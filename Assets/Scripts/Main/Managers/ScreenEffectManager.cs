@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using DG.Tweening;
 
 public class ScreenEffectManager : MonoBehaviour {
 	public Image missFlush;
@@ -9,12 +10,9 @@ public class ScreenEffectManager : MonoBehaviour {
 	public void EmitMissEffect() {
 		playerEffect.Miss();
 
-		var color = missFlush.color;
-		TweenPlayer.CancelAll(gameObject);
-		TweenPlayer.Play(gameObject, new Tween(0.3f).ValueTo(Vector3.one * 0.5f, Vector3.zero, EaseType.linear, pos => {
-			color.a = pos.x;
-			missFlush.color = color;
-		}));
+		DOTween.Kill(gameObject);
+		missFlush.color = Color.white * 0.7f;
+		missFlush.DOFade(0, 0.3f).SetId(gameObject);
 	}
 
 	public void EmitCorrectEffect() {

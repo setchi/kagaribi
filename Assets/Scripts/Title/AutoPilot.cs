@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class AutoPilot : MonoBehaviour {
 	public SquareGenerator squareGenerator;
@@ -26,9 +27,9 @@ public class AutoPilot : MonoBehaviour {
 	void Move(Vector3 pos) {
 		var distance = pos.z;
 		pos.z = 0;
-		
-		TweenPlayer.CancelAll(gameObject);
-		TweenPlayer.Play(gameObject, new Tween(distance / 30).MoveTo(gameObject, pos, EaseType.easeInOutQuad));
+
+		DOTween.Kill(gameObject);
+		gameObject.transform.DOMove(pos, distance / 30f).SetEase(Ease.InOutQuad).SetId(gameObject);
 	}
 
 	void Enqueue(GameObject target) {

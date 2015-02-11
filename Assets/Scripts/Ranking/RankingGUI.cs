@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class RankingGUI : MonoBehaviour {
 	public AudioClip onePointSE;
@@ -82,19 +83,16 @@ public class RankingGUI : MonoBehaviour {
 		messageText.text = "";
 
 		rankingPanel.transform.localPosition = Vector3.one;
-		rankingPanel.transform.localScale = Vector3.one / 2;
-		TweenPlayer.Play(gameObject, new Tween(0.3f).ValueTo(Vector3.one / 2, Vector3.one, EaseType.easeOutBack, pos => {
-			rankingPanel.transform.localScale = pos;
-		}));
+		DOTween.Kill(gameObject);
+		DOTween.To(() => Vector3.one / 2, scale => rankingPanel.transform.localScale = scale, Vector3.one, 0.3f).SetEase(Ease.OutBack).SetId(gameObject);
 	}
 
 	public void Hide() {
 		if (isHiding) return;
 		isHiding = true;
 
-		TweenPlayer.Play(gameObject, new Tween(0.3f).ValueTo(Vector3.one, Vector3.one / 2, EaseType.easeInBack, pos => {
-			rankingPanel.transform.localScale = pos;
-		}).Complete(() => rankingPanel.transform.localPosition = new Vector3(0, -100000, 0)));
+		DOTween.Kill(gameObject);
+		rankingPanel.transform.DOScale(Vector3.one / 2, 0.3f).SetEase(Ease.InBack).SetId(gameObject).OnComplete(() => rankingPanel.transform.localPosition = new Vector3(0, -100000, 0));
 	}
 
 	public void OnClickNameChangeButton() {
