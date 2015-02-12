@@ -28,8 +28,10 @@ public class PlayerEffect : MonoBehaviour {
 	}
 	
 	void ChangeParticleColor(float animationTime, Color startColor, Color endColor) {
-		DOTween.To(() => particleEndColor_, color => particleEndColor_ = color, endColor, animationTime);
-		DOTween.To(() => particleStartColor_, color => particleStartColor_ = color, startColor, animationTime);
+		var cachedEndColor = particleEndColor_;
+		var cachedStartColor = particleStartColor_;
+		DOTween.To(() => cachedEndColor, color => particleEndColor_ = color, endColor, animationTime);
+		DOTween.To(() => cachedStartColor, color => particleStartColor_ = color, startColor, animationTime);
 	}
 	
 	public IEnumerator ChangeParticleColorAfterDelay(Color color) {

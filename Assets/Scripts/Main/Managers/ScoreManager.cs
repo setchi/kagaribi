@@ -8,12 +8,19 @@ public class ScoreManager : MonoBehaviour {
 	float score_;
 	public int Score { get { return Mathf.RoundToInt(score_); } }
 
+	void Awake() {
+		SetScore("0");
+	}
+
 	public void Correct() {
 		combo++;
 		score_ += combo;
 
-		var stringifyScore = Score.ToString();
-		Storage.Set("Score", stringifyScore);
-		scoreText.text = stringifyScore;
+		SetScore(Score.ToString());
+	}
+
+	void SetScore(string score) {
+		Storage.Set("Score", score);
+		scoreText.text = score;
 	}
 }
