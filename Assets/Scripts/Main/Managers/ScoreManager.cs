@@ -9,18 +9,19 @@ public class ScoreManager : MonoBehaviour {
 	public int Score { get { return Mathf.RoundToInt(score_); } }
 
 	void Awake() {
-		SetScore("0");
+		SetScore(0);
 	}
 
 	public void Correct() {
 		combo++;
 		score_ += combo;
 
-		SetScore(Score.ToString());
+		SetScore(Score);
 	}
 
-	void SetScore(string score) {
-		Storage.Set("Score", score);
-		scoreText.text = score;
+	void SetScore(int score) {
+		var stringifyScore = score.ToString();
+		Storage.Set("Score", stringifyScore);
+		scoreText.text = stringifyScore;
 	}
 }
