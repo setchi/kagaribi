@@ -29,7 +29,7 @@ public class AutoPilot : MonoBehaviour {
 		pos.z = 0;
 
 		DOTween.Kill(gameObject);
-		gameObject.transform.DOMove(pos, distance / 30f).SetEase(Ease.InOutQuad).SetId(gameObject);
+		transform.DOMove(pos, distance / 30f).SetEase(Ease.InOutQuad).SetId(gameObject);
 	}
 
 	void Enqueue(GameObject target) {
