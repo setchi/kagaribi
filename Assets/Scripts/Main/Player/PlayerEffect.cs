@@ -23,7 +23,7 @@ public class PlayerEffect : MonoBehaviour {
 			float lifePercentage = 1 - particleList[i].lifetime / (particleList[i].startLifetime);
 			particleList[i].color = Color.Lerp(particleStartColor_, particleEndColor_, lifePercentage * 1.35f);
 		}
-
+		
 		particleSystem.SetParticles(particleList, particleSystem.particleCount);
 	}
 	
@@ -40,6 +40,6 @@ public class PlayerEffect : MonoBehaviour {
 	}
 	
 	public void Miss() {
-		Instantiate(circleEffect, gameObject.transform.position, Quaternion.identity);
+		Instantiate(circleEffect, transform.position, Quaternion.identity);
 	}
 }

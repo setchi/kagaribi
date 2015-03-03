@@ -8,7 +8,7 @@ public class CircleEffect : MonoBehaviour {
 		var renderer = gameObject.GetComponent<SpriteRenderer>();
 
 		var time = 0.6f;
-		gameObject.transform.DOScale(Vector3.one * 4f * Time.timeScale, time);
+		transform.DOScale(Vector3.one * 4f * Time.timeScale, time);
 		renderer.DOFade(0, time).OnComplete(() => DestroyObject(gameObject));
 	}
 

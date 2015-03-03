@@ -16,8 +16,8 @@ public class SquareContainer : SingletonGameObject<SquareContainer> {
 	
 	Square[] SetupSquares() {
 		squares = Enumerable.Range(0, maxSquare).Select(i => {
-			var square = Instantiate(squarePrefab, Vector3.zero, Quaternion.identity) as GameObject;
-			square.transform.SetParent(gameObject.transform);
+			var square = Instantiate(squarePrefab) as GameObject;
+			square.transform.SetParent(transform);
 			return square.GetComponent<Square>();
 		}).ToArray();
 

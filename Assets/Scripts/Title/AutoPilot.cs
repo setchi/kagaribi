@@ -13,13 +13,9 @@ public class AutoPilot : MonoBehaviour {
 
 	void Update() {
 		if (targetQueue.Count > 0) {
-			var targetPos = targetQueue.Peek().transform.position;
-			
-			if (targetPos.z < 10) {
+			if (targetQueue.Peek().transform.position.z < 10) {
 				targetQueue.Dequeue();
-
-				var nextTargetPos = targetQueue.Peek().transform.position;
-				Move(nextTargetPos);
+				Move(targetQueue.Peek().transform.position);
 			}
 		}
 	}
