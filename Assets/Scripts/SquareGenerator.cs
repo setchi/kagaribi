@@ -2,13 +2,13 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 
 public class SquareGenerator : MonoBehaviour {
 	public GameObject player;
 	public ResultReceiver resultReceiver;
 	public PlayerEffect particleController;
-	public delegate void PopEvent(GameObject square);
-	public event PopEvent onPopTarget = square => {};
+	public Subject<GameObject> onPopTarget = new Subject<GameObject>();
 
 	void Awake() {
 		SquareContainer.ForEach(square => {
@@ -100,7 +100,7 @@ public class SquareGenerator : MonoBehaviour {
 	
 	public GameObject PopTarget(Vector3 pos, Quaternion rot) {
 		var squareObj = PopSquare(pos, rot, true, Color.white);
-		onPopTarget(squareObj);
+		onPopTarget.OnNext(squareObj);
 		return squareObj;
 	}
 }

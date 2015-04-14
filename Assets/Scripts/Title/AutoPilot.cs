@@ -2,22 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UniRx;
+using UniRx.Triggers;
 
 public class AutoPilot : MonoBehaviour {
-	public SquareGenerator squareGenerator;
-	Queue<GameObject> targetQueue = new Queue<GameObject>();
+	[SerializeField] SquareGenerator squareGenerator;
 
 	void Awake() {
-		squareGenerator.onPopTarget += Enqueue;
-	}
+		var targetQueue = new Queue<GameObject>();
 
-	void Update() {
-		if (targetQueue.Count > 0) {
-			if (targetQueue.Peek().transform.position.z < 10) {
-				targetQueue.Dequeue();
-				Move(targetQueue.Peek().transform.position);
-			}
-		}
+		squareGenerator.onPopTarget.Subscribe(targetQueue.Enqueue);
+		squareGenerator.onPopTarget.First().Subscribe(target => Move(target.transform.position));
+
+		this.UpdateAsObservable().Select(_ => targetQueue).Where(queue => queue.Count > 0)
+			.Where(queue => queue.Peek().transform.position.z < 10)
+				.Do(queue => queue.Dequeue())
+				.Subscribe(queue => Move(queue.Peek().transform.position));
 	}
 	
 	void Move(Vector3 pos) {
@@ -26,12 +26,5 @@ public class AutoPilot : MonoBehaviour {
 
 		DOTween.Kill(gameObject);
 		transform.DOMove(pos, distance / 30f).SetEase(Ease.InOutQuad).SetId(gameObject);
-	}
-
-	void Enqueue(GameObject target) {
-		if (targetQueue.Count == 0)
-			Move(target.transform.position);
-		
-		targetQueue.Enqueue(target);
 	}
 }
