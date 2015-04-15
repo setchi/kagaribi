@@ -9,17 +9,14 @@ public class AutoPilot : MonoBehaviour {
 	[SerializeField] SquareGenerator squareGenerator;
 
 	void Awake() {
-		var targetQueue = new Queue<GameObject>();
-
-		squareGenerator.onPopTarget.Subscribe(targetQueue.Enqueue);
 		squareGenerator.onPopTarget.First().Subscribe(target => Move(target.transform.position));
 
-		this.UpdateAsObservable().Select(_ => targetQueue).Where(queue => queue.Count > 0)
-			.Where(queue => queue.Peek().transform.position.z < 10)
-				.Do(queue => queue.Dequeue())
-				.Subscribe(queue => Move(queue.Peek().transform.position));
+		squareGenerator.onPopTarget.Buffer(2, 1)
+			.Subscribe(b => b[0].transform.ObserveEveryValueChanged(x => x.position)
+					.Where(pos => pos.z < 10)
+						.First().Subscribe(_ => Move(b[1].transform.position)));
 	}
-	
+
 	void Move(Vector3 pos) {
 		var distance = pos.z;
 		pos.z = 0;
