@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UniRx;
 
 public class PlayerLife : MonoBehaviour {
-	public PlayerMovement playerMovement;
-	bool isDead_ = false;
-	public bool isDead { get { return isDead_; } }
+	[SerializeField] PlayerMovement playerMovement;
+	public readonly ReactiveProperty<bool> IsDead = new ReactiveProperty<bool>(false);
 
-	public void Death() {
-		isDead_ = true;
-		playerMovement.enabled = false;
+	void Awake() {
+		IsDead.Subscribe(isDead => playerMovement.enabled = !isDead);
 	}
 }

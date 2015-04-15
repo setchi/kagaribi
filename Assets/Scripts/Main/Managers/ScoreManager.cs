@@ -1,27 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UniRx;
 
 public class ScoreManager : MonoBehaviour {
-	public Text scoreText;
-	int combo = 0;
-	float score_;
-	public int Score { get { return Mathf.RoundToInt(score_); } }
+	[SerializeField] Text scoreText;
+	Subject<int> correctStream = new Subject<int>();
 
 	void Awake() {
-		SetScore(0);
+		correctStream.AsObservable()
+			.Scan((combo, one) => combo + one)
+				.Scan((score, combo) => score + combo)
+				.Select(score => score.ToString())
+				.Do(score => Storage.Set("Score", score))
+				.SubscribeToText(scoreText);
 	}
 
 	public void Correct() {
-		combo++;
-		score_ += combo;
-
-		SetScore(Score);
-	}
-
-	void SetScore(int score) {
-		var stringifyScore = score.ToString();
-		Storage.Set("Score", stringifyScore);
-		scoreText.text = stringifyScore;
+		correctStream.OnNext(1);
 	}
 }
