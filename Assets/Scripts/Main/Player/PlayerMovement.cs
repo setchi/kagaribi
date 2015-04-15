@@ -14,14 +14,12 @@ public class PlayerMovement : MonoBehaviour {
 			.Where(_ => Input.GetMouseButtonDown(0))
 				.Select(_ => Input.mousePosition);
 
-		var swipeStream = this.UpdateAsObservable()
+		this.UpdateAsObservable()
 			.SkipUntil(touchDownStream)
 				.TakeWhile(_ => !Input.GetMouseButtonUp(0))
-				.RepeatSafe();
-
-		swipeStream.CombineLatest(touchDownStream, (_, startPos) => startPos)
-			.Select(startPos => Input.mousePosition - startPos)
-				.Subscribe(Move);
+				.RepeatSafe()
+				.CombineLatest(touchDownStream, (_, startPos) => startPos)
+				.Subscribe(startPos => Move(Input.mousePosition - startPos));
 	}
 
 	void Move(Vector3 velocity) {
