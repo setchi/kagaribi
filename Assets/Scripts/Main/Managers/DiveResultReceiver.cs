@@ -31,7 +31,7 @@ public class DiveResultReceiver : ResultReceiver {
 		
 		soundEffectManager.Miss();
 		screenEffectManager.EmitMissEffect();
-		playerLife.Death();
+		playerLife.IsDead.Value = true;
 	}
 
 }
