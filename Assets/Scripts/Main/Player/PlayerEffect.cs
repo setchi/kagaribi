@@ -20,7 +20,7 @@ public class PlayerEffect : MonoBehaviour {
 		particleSystem.GetParticles(particleList);
 
 		for (int i = 0; i < particleList.Length; ++i) {
-			float lifePercentage = 1 - particleList[i].lifetime / (particleList[i].startLifetime);
+			float lifePercentage = 1 - particleList[i].remainingLifetime / (particleList[i].startLifetime);
 			particleList[i].color = Color.Lerp(particleStartColor_, particleEndColor_, lifePercentage * 1.35f);
 		}
 		

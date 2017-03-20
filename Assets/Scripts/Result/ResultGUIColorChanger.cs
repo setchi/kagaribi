@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class ResultGUIColorChanger : MonoBehaviour {
 	public PlayerEffect playerEffect;

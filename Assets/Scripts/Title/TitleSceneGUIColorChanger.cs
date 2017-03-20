@@ -20,7 +20,7 @@ public class TitleSceneGUIColorChanger : MonoBehaviour {
 		particleSystem.GetParticles(particleList);
 
 		for (int i = 0; i < particleList.Length; ++i) {
-			float lifePercentage = 1 - particleList[i].lifetime / (particleList[i].startLifetime);
+			float lifePercentage = 1 - particleList[i].remainingLifetime / (particleList[i].startLifetime);
 
 			var color = Color.Lerp(
 				playerEffect.ParticleEndColor,

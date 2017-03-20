@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using DG.Tweening;
+using UniRx;
+using UniRx.Triggers;
 
 public class ResultSceneGUI : MonoBehaviour {
 	public FadeManager fadeManager;
@@ -70,17 +72,14 @@ public class ResultSceneGUI : MonoBehaviour {
 		var score = float.Parse(Storage.Get("Score") ?? "0");
 		var countUpSmoothing = 6f;
 
-		for (float counter = 0f; counter <= score;) {
-			var stringifyScore = Mathf.RoundToInt(counter).ToString();
-			scoreValue.text = stringifyScore;
+		var countUpStream = this.UpdateAsObservable()
+			.Select(_ => countUpSmoothing * Time.deltaTime)
+				.Scan((total, delta) => total + (score - total) * delta)
+				.TakeWhile(counter => counter <= score)
+				.Select(counter => Mathf.RoundToInt(counter).ToString());
 
-			if (counter > bestScore)
-				bestValue.text = stringifyScore;
-
-			counter += (score - counter) * countUpSmoothing * Time.deltaTime;
-
-			yield return new WaitForEndOfFrame();
-		}
+		countUpStream.SubscribeToText(scoreValue);
+		countUpStream.Where(counter => int.Parse(counter) > bestScore).SubscribeToText(bestValue);
 	}
 
 	public void OnClickReturnButton() {
